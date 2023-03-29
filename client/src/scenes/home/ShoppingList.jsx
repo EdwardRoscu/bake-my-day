@@ -29,11 +29,11 @@ const ShoppingList = () => {
 
     useEffect(() => {
         getItems();
-    }, [])
+    }, []);
 
     return (
         <div>Shopping List</div>
-    )
+    );
 };
 
 export default ShoppingList;

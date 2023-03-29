@@ -26,7 +26,7 @@ const Navbar = () => {
             <Box
                 width = "80%"
                 margin = "auto"
-                dispaly = "flex"
+                display = "flex"
                 justifyContent = "space-between"
                 alignItems = "center"
             >
@@ -38,7 +38,7 @@ const Navbar = () => {
                     BAKE MY DAY
                 </Box>
                 <Box
-                    dispaly = "flex"
+                    display = "flex"
                     justifyContent = "space-between"
                     columnGap = "20px"
                     zIndex = "2"
@@ -59,16 +59,15 @@ const Navbar = () => {
                                 top: 5,
                                 padding: "0 4px",
                                 height: "14px",
-                                minWidth: "12px",
+                                minWidth: "13px",
                             },
                         }}
                     >
                         <IconButton
-                            onClick = {() =>
-                                dispatch(setIsCartOpen({}))}
+                            onClick = {() => dispatch(setIsCartOpen({}))}
                             sx = {{ color: "black" }}
                         >
-                            <ShoppingBagOutlined/>
+                            <ShoppingBagOutlined />
                         </IconButton>
                     </Badge>
                     <IconButton sx = {{ color: "black" }}>

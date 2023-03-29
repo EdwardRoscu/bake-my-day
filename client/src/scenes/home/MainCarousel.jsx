@@ -1,11 +1,11 @@
-import { Box, Typography, IconButton, useMediaQuery } from '@mui/material';
+import { Box, Typography, IconButton, useMediaQuery } from "@mui/material";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import NavigateNextIcon from  "@mui/icons-material/NavigateNext";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { shades } from "../../theme";
 
-//import all images from assets folder
+// import all images from assets folder
 const importAll = (r) =>
     r.keys().reduce((acc, item) => {
       acc[item.replace("./", "")] = r(item);
@@ -13,12 +13,11 @@ const importAll = (r) =>
     }, {});
 
 const heroTextureImports = importAll(
-    require.context("../../assets", false, /\.(png | jpe?g | svg)$/)
+    require.context("../../assets", false, /\.(png | jpe?g | svg | jpg)$/)
 );
 
 const MainCarousel = () => {
-    const isNonMobile = useMediaQuery("(min=width:600px)");
-    
+    const isNonMobile = useMediaQuery("(min-width:600px)");
     return (
         <Carousel
         infiniteLoop = {true}
@@ -30,27 +29,26 @@ const MainCarousel = () => {
                 onClick = {onClickHandler}
                 sx = {{
                     position: "absolute",
-                    top: "50px",
-                    left: '0',
+                    top: "50%",
+                    left: "0",
                     color: "white",
                     padding: "5px",
-                    zIndex: " 10",
+                    zIndex: "10",
                 }}
             >
                 <NavigateBeforeIcon sx={{ fontSize: 40}} />
             </IconButton>
         )}
-
         renderArrowNext = {(onClickHandler, hasNext, label) => (
             <IconButton
                 onClick = {onClickHandler}
                 sx = {{
                     position: "absolute",
-                    top: "50px",
-                    right: '0',
+                    top: "50%",
+                    right: "0",
                     color: "white",
                     padding: "5px",
-                    zIndex: " 10",
+                    zIndex: "10",
                 }}
             >
                 <NavigateNextIcon sx={{ fontSize: 40}} />
@@ -82,7 +80,7 @@ const MainCarousel = () => {
                         margin = {isNonMobile ? undefined : "0 auto"}
                         maxWidth = {isNonMobile ? undefined : "240px"}
                     >
-                        <Typography color = {shades.secondary[200]}>-- New Produdts</Typography>
+                        <Typography color = {shades.secondary[200]}>-- New Products</Typography>
                         <Typography variant = "h1">Spring Sale</Typography>
                         <Typography 
                             fontWeight="bold" 
