@@ -13,7 +13,7 @@ const importAll = (r) =>
     }, {});
 
 const heroTextureImports = importAll(
-    require.context("../../assets", false, /\.(png | jpe?g | svg | jpg)$/)
+    require.context("../../assets", false, /\.(png|jpe?g|svg|jpg)$/)
 );
 
 const MainCarousel = () => {
@@ -57,7 +57,7 @@ const MainCarousel = () => {
         >
             {Object.values(heroTextureImports).map((texture, index) => (
                 <Box key={`carousel-image-${index}`}>
-                    <img 
+                    <img
                         src = {texture}
                         alt = {`carousel-${index}`}
                         style = {{
@@ -72,19 +72,19 @@ const MainCarousel = () => {
                         padding = "20px"
                         borderRadius = "1px"
                         textAlign = "left"
-                        backgroundColor = "rgb(0, 0, 0, 0.4)"
+                        backgroundColor = "rgb(0, 0, 0, 0.8)"
                         position = "absolute"
-                        top = "46%"
+                        top = "50%"
                         left = {isNonMobile ? "10%" : "0"}
                         right = {isNonMobile ? undefined : "0"}
                         margin = {isNonMobile ? undefined : "0 auto"}
                         maxWidth = {isNonMobile ? undefined : "240px"}
                     >
-                        <Typography color = {shades.secondary[200]}>-- New Products</Typography>
+                        <Typography color = {shades.secondary[200]}>New Products</Typography>
                         <Typography variant = "h1">Spring Sale</Typography>
-                        <Typography 
-                            fontWeight="bold" 
-                            color={shades.secondary[300]} 
+                        <Typography
+                            fontWeight="bold"
+                            color={shades.secondary[300]}
                             sx={{textDecoration: "underline"}}
                         >
                             Discover More
