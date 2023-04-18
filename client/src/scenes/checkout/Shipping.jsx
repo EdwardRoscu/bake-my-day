@@ -18,7 +18,7 @@ const Shipping = ({
                 </Typography>
                 <AddressForm
                     type="billingAddress"
-                    value={values.billingAddress}
+                    values={values.billingAddress}
                     errors={errors}
                     touched={touched}
                     handleBlur={handleBlur}
@@ -43,7 +43,21 @@ const Shipping = ({
                 />
             </Box>
             {/*SHIPPING FORM*/}
-            
+            {!values.shippingAddress.isSameAddress && (
+                <Box>
+                    <Typography sx={{mb: "15px"}} fontSize="18px">
+                        Shipping Information
+                    </Typography>
+                    <AddressForm
+                        type="shippingAddress"
+                        values={values.shippingAddress}
+                        errors={errors}
+                        touched={touched}
+                        handleBlur={handleBlur}
+                        handleChange={handleChange}
+                    />
+                </Box>
+            )};
         </Box>
     );
 };
