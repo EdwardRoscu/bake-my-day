@@ -21,18 +21,18 @@ const ScrollToTop = () => {
 function App() {
   return (
     <div className="app">
-        <BrowserRouter>
-            <Navbar />
-            <ScrollToTop />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="item/:itemId" element={<ItemDetails />} />
-                <Route path="checkout" element={<Checkout />} />
-                <Route path="checkout/success" element={<Confirmation />} />
-            </Routes>
-            <CartMenu />
-            <Footer />
-        </BrowserRouter>
+      <BrowserRouter>
+        <Navbar />
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="item/:itemId" element={<ItemDetails />} />
+          <Route path="checkout" element={<Checkout />} />
+          <Route path="checkout/success" element={<Confirmation />} />
+        </Routes>
+        <CartMenu />
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }

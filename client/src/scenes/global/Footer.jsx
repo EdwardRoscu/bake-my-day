@@ -25,7 +25,7 @@ function Footer() {
             BAKE MY DAY
           </Typography>
           <div>
-              Selling baked sweets since 2015
+            Selling baked sweets since 2015
           </div>
         </Box>
 

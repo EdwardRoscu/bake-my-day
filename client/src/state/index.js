@@ -1,5 +1,3 @@
-// Cart behaviour
-
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
