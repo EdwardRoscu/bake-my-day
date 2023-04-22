@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useDispatch } from 'react-redux';
-import { IconButton, Box, Typography, useTheme, Button, imageListClasses } from '@mui/material';
+import { useDispatch } from "react-redux";
+import { IconButton, Box, Typography, useTheme, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { shades } from "../theme";
@@ -12,7 +12,7 @@ const Item = ({item, width}) => {
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
-  const{ 
+  const {
     palette: {neutral},
   } = useTheme();
   
@@ -38,23 +38,22 @@ const Item = ({item, width}) => {
                 alt={item.name}
                 width="300px"
                 height="300px"
-                src={`http://localhost:1337${url}`}
+                src={`http://localhost:4000${url}`}
                 onClick={() => navigate(`/item/${item.id}`)}
                 style={{ cursor: 'pointer'}}
             />
             <Box
-                display={ isHovered ? "block" : 'none'}
+                display={isHovered ? "block" : 'none'}
                 position="absolute"
-                button="10%"
+                bottom="10%"
                 left="0"
                 width="100%"
                 padding="0 5%"
             >
                 <Box display="flex" justifyContent="space-between">
-                   {/*AMOUNT*/}
                     <Box
                        display="flex"
-                       alignItems="center" 
+                       alignItems="center"
                        backgroundColor={shades.neutral[100]}
                        borderRadius="3px"
                     >
@@ -66,7 +65,6 @@ const Item = ({item, width}) => {
                           <AddIcon />
                         </IconButton>
                     </Box>
-                    {/*BUTTON*/}
                       <Button
                         onClick={() => {
                             dispatch(addToCart({ item: {...item, count}}));

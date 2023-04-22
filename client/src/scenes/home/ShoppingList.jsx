@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import Tabs from '@mui/material/Tabs';
+import React, { useEffect, useState } from "react";
+import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import Item from "../../components/Item";
-import { useMediaQuery } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-import { setItems } from '../../state';
 import { Typography } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useDispatch, useSelector } from "react-redux";
+import { setItems } from "../../state";
 
 const ShoppingList = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const ShoppingList = () => {
 
   async function getItems() {
     const items = await fetch(
-      "http://localhost:1337/api/items?populate=image",
+      "http://localhost:4000/api/items?populate=image",
       { method: "GET" }
     );
     const itemsJson = await items.json();
@@ -31,13 +31,13 @@ const ShoppingList = () => {
     getItems();
   }, []);
 
-  const cakes = items.filter(
+  const cakesItems = items.filter(
     (item) => item.attributes.category === "cakes"
   );
-  const cookies = items.filter(
+  const cookiesItems = items.filter(
     (item) => item.attributes.category === "cookies"
   );
-  const pies = items.filter(
+  const piesItems = items.filter(
     (item) => item.attributes.category === "pies"
   );
 
@@ -78,15 +78,15 @@ const ShoppingList = () => {
             <Item item={item} key={`${item.name}-${item.id}`} />
           ))}
         {value === "cakes" &&
-          cakes.map((item) => (
+          cakesItems.map((item) => (
             <Item item={item} key={`${item.name}-${item.id}`} />
           ))}
         {value === "cookies" &&
-          cookies.map((item) => (
+          cookiesItems.map((item) => (
             <Item item={item} key={`${item.name}-${item.id}`} />
           ))}
         {value === "pies" &&
-          pies.map((item) => (
+          piesItems.map((item) => (
             <Item item={item} key={`${item.name}-${item.id}`} />
           ))}
       </Box>

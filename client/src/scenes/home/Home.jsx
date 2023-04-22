@@ -1,7 +1,7 @@
 import MainCarousel from "./MainCarousel";
 import ShoppingList from "./ShoppingList";
 
-const Home = () => {
+function Home() {
   return (
     <div className="home">
       <MainCarousel />
