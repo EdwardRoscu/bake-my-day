@@ -36,7 +36,7 @@ const MainCarousel = () => {
             zIndex: "10",
           }}
         >
-          <NavigateBeforeIcon sx={{ fontSize: 40}} />
+          <NavigateBeforeIcon sx={{ fontSize: 40 }} />
         </IconButton>
       )}
       renderArrowNext = {(onClickHandler, hasNext, label) => (
@@ -93,7 +93,7 @@ const MainCarousel = () => {
         </Box>
       ))}
     </Carousel>
-  )
-}
+  );
+};
 
 export default MainCarousel;
