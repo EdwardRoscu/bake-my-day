@@ -32,10 +32,3 @@ Ensure you have the following software installed on your system:
 2. Open a new terminal and navigate to the `server` directory: `$ cd server`
 3. Start the Strapi backend by running: `$ npm run develop`
 4. The Strapi admin panel should now be accessible at `http://localhost:4000/admin` (or the port specified in the terminal output).
-
-You may need to kill all tasks currently running on port 4000.
-To do so, for windows, run cmd as admin and do:
-```
-$ netstat -ano | findstr :4000
-$ taskkill /F /PID <PID_number>
-```
