@@ -18,7 +18,7 @@ Ensure you have the following software installed on your system:
 ## Setup
 
 1. Clone the repository to your local machine.
-2. Navigate to the project root and run `npm install` to install the required dependencies.
+2. Navigate to both `client` and `server` directories and run `npm install` to install the required dependencies.
 
 ## Running the Application
 
