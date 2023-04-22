@@ -33,3 +33,10 @@ Ensure you have the following software installed on your system:
 1. Open a new terminal and navigate to the `server` directory: `$ cd server`
 2. Start the Strapi backend by running: `$ npm run develop`
 3. The Strapi admin panel should now be accessible at `http://localhost:1337/admin` (or the port specified in the terminal output).
+
+You may need to kill all tasks currently running on port 1337.
+To do so, for windows, run cmd as admin and do:
+```
+$ netstat -ano | findstr :1337
+$ taskkill /F /PID <PID_number>
+```
