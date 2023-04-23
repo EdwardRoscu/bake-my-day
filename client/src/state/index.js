@@ -1,11 +1,9 @@
-// Cart behaviour
-
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     isCartOpen: false,
     cart: [],
-    items: []
+    items: [],
 };
 
 export const cartSlice = createSlice({
@@ -44,8 +42,8 @@ export const cartSlice = createSlice({
 
         setIsCartOpen: (state) => {
             state.isCartOpen = !state.isCartOpen;
-        }
-    }
+        },
+    },
 });
 
 export const {
@@ -54,7 +52,7 @@ export const {
     removeFromCart,
     increaseCount,
     decreaseCount,
-    setIsCartOpen
+    setIsCartOpen,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
