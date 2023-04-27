@@ -12,6 +12,7 @@ import {
   setIsCartOpen,
 } from "../../state";
 import { useNavigate } from "react-router-dom";
+import React, { useRef, useEffect } from "react";
 
 const FlexBox = styled(Box)`
   display: flex;
@@ -29,6 +30,26 @@ const CartMenu = () => {
     return total + item.count * item.attributes.price;
   }, 0);
 
+  const cartMenuRef = useRef();
+
+  const handleClickOutside = (event) => {
+    if (cartMenuRef.current && !cartMenuRef.current.contains(event.target)) {
+      dispatch(setIsCartOpen({}));
+    }
+  };
+
+  useEffect(() => {
+    if (isCartOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isCartOpen, dispatch]);
+
   return (
     <Box
       display={isCartOpen ? "block" : "none"}
@@ -42,6 +63,7 @@ const CartMenu = () => {
       overflow="auto"
     >
       <Box
+        ref={cartMenuRef}
         position="fixed"
         right="0"
         bottom="0"
