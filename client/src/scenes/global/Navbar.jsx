@@ -37,8 +37,12 @@ function Navbar() {
           >
               <Box
                 onClick = { () => navigate("/") }
-                sx = {{ "&:hover": { cursor: "pointer" } }}
-                color = {shades.secondary[500]}
+                sx={{
+                    "&:hover": { cursor: "pointer" },
+                    color: shades.secondary[500],
+                    fontSize: "20px",
+                    fontWeight: "bold"
+                }}
               >
                   BAKE MY DAY
               </Box>
