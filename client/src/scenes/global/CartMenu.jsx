@@ -12,7 +12,7 @@ import {
   setIsCartOpen,
 } from "../../state";
 import { useNavigate } from "react-router-dom";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 
 const FlexBox = styled(Box)`
   display: flex;
@@ -32,11 +32,11 @@ const CartMenu = () => {
 
   const cartMenuRef = useRef();
 
-  const handleClickOutside = (event) => {
+  const handleClickOutside = useCallback((event) => {
     if (cartMenuRef.current && !cartMenuRef.current.contains(event.target)) {
       dispatch(setIsCartOpen({}));
     }
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     if (isCartOpen) {
@@ -48,7 +48,7 @@ const CartMenu = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isCartOpen, dispatch]);
+  }, [isCartOpen, handleClickOutside]);
 
   return (
     <Box
