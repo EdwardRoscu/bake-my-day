@@ -42,8 +42,8 @@ const ShoppingList = () => {
   );
 
   return (
-    <Box width="80%" margin="80px auto">
-      <Typography variant="h3" textAlign="center">
+    <Box width="80%" margin="50px auto">
+      <Typography variant="h2" textAlign="center">
         Featured <b>Products</b>
       </Typography>
       <Tabs
@@ -57,6 +57,10 @@ const ShoppingList = () => {
           m: "25px",
           "& .MuiTabs-flexContainer": {
             flexWrap: "wrap",
+          },
+          "& .MuiTab-root": {
+            typography: "body1",
+            fontSize: "16px",
           },
         }}
       >
