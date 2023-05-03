@@ -21,12 +21,12 @@ function Navbar() {
         alignItems = "center"
         width = "100%"
         height = "60px"
-        backgroundColor = "rgba(255, 255, 255, 0.95)"
+        backgroundColor = "rgba(255, 255, 255, 1)"
         color = "black"
         position ="fixed"
         top = "0"
         left = "0"
-        zIndex = "1"
+        zIndex = "100"
       >
           <Box
             width = "80%"
@@ -50,7 +50,6 @@ function Navbar() {
                 display = "flex"
                 justifyContent = "space-between"
                 columnGap = "20px"
-                zIndex = "2"
               >
                   <IconButton sx = {{ color: "black"}}>
                       <SearchOutlined />

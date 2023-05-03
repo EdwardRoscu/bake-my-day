@@ -35,7 +35,7 @@ const MainCarousel = () => {
               left: "0",
               color: "white",
               padding: "5px",
-              zIndex: "10",
+              zIndex: "20",
             }}
           >
             <NavigateBeforeIcon sx={{ fontSize: 40 }} />
@@ -50,7 +50,7 @@ const MainCarousel = () => {
               right: "0",
               color: "white",
               padding: "5px",
-              zIndex: "10",
+              zIndex: "20",
             }}
           >
             <NavigateNextIcon sx={{ fontSize: 40 }} />
@@ -84,7 +84,7 @@ const MainCarousel = () => {
         right={isNonMobile ? undefined : "0"}
         margin={isNonMobile ? undefined : "0 auto"}
         maxWidth={isNonMobile ? undefined : "240px"}
-        zIndex="5"
+        zIndex="10"
       >
         <Typography color={shades.secondary[200]}>New Products</Typography>
         <Typography variant="h1">Spring Sale</Typography>
