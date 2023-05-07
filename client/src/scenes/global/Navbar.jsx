@@ -59,7 +59,7 @@ function Navbar() {
                         <SearchOutlined />
                     </IconButton>
                     <IconButton
-                        onClick={() => navigate("/admin")}
+                        onClick={() => navigate("/auth/login")}
                         sx = {{ color: "black"}}
                     >
                         <PersonOutline />
@@ -85,7 +85,10 @@ function Navbar() {
                             <ShoppingBagOutlined />
                         </IconButton>
                     </Badge>
-                    <IconButton sx = {{ color: "black" }}>
+                    <IconButton
+                        onClick={() => navigate("/admin")}
+                        sx = {{ color: "black" }}
+                    >
                         <MenuOutlined />
                     </IconButton>
                 </Box>
