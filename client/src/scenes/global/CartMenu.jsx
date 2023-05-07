@@ -34,6 +34,9 @@ const CartMenu = () => {
 
   const handleClickOutside = useCallback((event) => {
     if (cartMenuRef.current && !cartMenuRef.current.contains(event.target)) {
+      const isNavbarClick = event.target.closest("#navbar");
+      if (isNavbarClick) return;
+
       dispatch(setIsCartOpen({}));
     }
   }, [dispatch]);
