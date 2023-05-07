@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
@@ -18,18 +18,18 @@ const ShoppingList = () => {
         setValue(newValue);
     };
 
-    async function getItems() {
+    const getItems = useCallback(async () => {
         const items = await fetch(
             "http://localhost:4000/api/items?populate=image",
             { method: "GET" }
         );
         const itemsJson = await items.json();
         dispatch(setItems(itemsJson.data));
-    }
+    }, [dispatch]);
 
     useEffect(() => {
         getItems();
-    }, []);
+    }, [getItems]);
 
     const cakesItems = items.filter(
         (item) => item.attributes.category === "cakes"

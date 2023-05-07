@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { IconButton, Box, Typography, useTheme, Button } from "@mui/material";
+import { IconButton, Box, Typography, useTheme, Button, CircularProgress } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { shades } from "../theme";
@@ -16,7 +16,23 @@ const Item = ({ item, width }) => {
     palette: { neutral },
   } = useTheme();
 
+  const [isLoading, setIsLoading] = useState(true);
   const { category, price, name, image } = item.attributes;
+
+  useEffect(() => {
+    if (image) {
+      setIsLoading(false);
+    }
+  }, [image]);
+
+  if (isLoading) {
+    return (
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <CircularProgress />
+        </Box>
+    );
+  }
+
   const {
     data: {
       attributes: {
@@ -60,7 +76,7 @@ const Item = ({ item, width }) => {
                 <IconButton onClick={() => setCount(Math.max(count - 1, 1))}>
                   <RemoveIcon />
                 </IconButton>
-                <Typography color = {shades.primary[300]}>{count}</Typography>
+                <Typography color={shades.primary[300]}>{count}</Typography>
                 <IconButton onClick={() => setCount(count + 1)}>
                   <AddIcon />
                 </IconButton>
