@@ -1,24 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box, List, ListItemButton, ListItemText } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setItems } from "../../state";
 
 const Admin = () => {
     const [view, setView] = useState('orders'); // default to orders view
     const [orders, setOrders] = useState([]);
     const items = useSelector((state) => state.cart.items);
+    const dispatch = useDispatch();
 
-    async function getOrders() {
+    const getOrders = useCallback(async () => {
         const response = await fetch(
             "http://localhost:4000/api/orders",
             { method: 'GET' }
         );
         const ordersJson = await response.json();
         setOrders(ordersJson.data);
-    }
+    }, []);
+
+    const getItems = useCallback(async () => {
+        const items = await fetch(
+            "http://localhost:4000/api/items",
+            { method: "GET" }
+        );
+        const itemsJson = await items.json();
+        dispatch(setItems(itemsJson.data));
+    }, [dispatch]);
 
     useEffect(() => {
         getOrders();
-    }, []);
+        getItems();
+    }, [getOrders, getItems]);
 
     function getProductName(productId) {
         const item = items.find(item => item.id === productId);
