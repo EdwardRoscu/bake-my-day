@@ -17,6 +17,7 @@ function Navbar() {
 
     return (
         <Box
+            id="navbar"
             display = "flex"
             alignItems = "center"
             width = "100%"
@@ -27,6 +28,7 @@ function Navbar() {
             top = "0"
             left = "0"
             zIndex = "100"
+            boxShadow = "0px 2px 4px rgba(0, 0, 0, 0.1)"
         >
             <Box
                 width = "80%"
@@ -36,7 +38,10 @@ function Navbar() {
                 alignItems = "center"
             >
                 <Box
-                    onClick = { () => navigate("/") }
+                    onClick={() => {
+                        navigate("/");
+                        window.location.reload();
+                    }}
                     sx={{
                         "&:hover": { cursor: "pointer" },
                         color: shades.secondary[500],
@@ -54,7 +59,10 @@ function Navbar() {
                     <IconButton sx = {{ color: "black"}}>
                         <SearchOutlined />
                     </IconButton>
-                    <IconButton sx = {{ color: "black"}}>
+                    <IconButton
+                        onClick={() => navigate("/admin")}
+                        sx = {{ color: "black"}}
+                    >
                         <PersonOutline />
                     </IconButton>
                     <Badge
