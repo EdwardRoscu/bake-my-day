@@ -1,41 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box, List, ListItemButton, ListItemText } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-import { setItems } from "../../state";
+import React, { useState } from 'react';
+import { Box } from '@mui/material';
+import Sidebar from './Sidebar';
+import Orders from './Orders';
+import Users from './Users';
 
 const Admin = () => {
     const [view, setView] = useState('orders'); // default to orders view
-    const [orders, setOrders] = useState([]);
-    const items = useSelector((state) => state.cart.items);
-    const dispatch = useDispatch();
-
-    const getOrders = useCallback(async () => {
-        const response = await fetch(
-            "http://localhost:4000/api/orders",
-            { method: 'GET' }
-        );
-        const ordersJson = await response.json();
-        setOrders(ordersJson.data);
-    }, []);
-
-    const getItems = useCallback(async () => {
-        const items = await fetch(
-            "http://localhost:4000/api/items",
-            { method: "GET" }
-        );
-        const itemsJson = await items.json();
-        dispatch(setItems(itemsJson.data));
-    }, [dispatch]);
-
-    useEffect(() => {
-        getOrders();
-        getItems();
-    }, [getOrders, getItems]);
-
-    function getProductName(productId) {
-        const item = items.find(item => item.id === productId);
-        return item && item.attributes && item.attributes.name ? item.attributes.name : 'N/A';
-    }
 
     function handleViewChange(viewName) {
         setView(viewName);
@@ -43,55 +13,10 @@ const Admin = () => {
 
     return (
         <Box display="flex" width="100%">
-            <Box width="10%" m="100px 0 0 50px">
-                <List>
-                    <ListItemButton selected={view === 'orders'} onClick={() => handleViewChange('orders')}>
-                        <ListItemText primary="Orders" />
-                    </ListItemButton>
-                    <ListItemButton selected={view === 'users'} onClick={() => handleViewChange('users')}>
-                        <ListItemText primary="Users" />
-                    </ListItemButton>
-                </List>
-            </Box>
+            <Sidebar view={view} onViewChange={handleViewChange} />
             <Box width="80%" m="100px auto">
-                {view === 'orders' && (
-                    <TableContainer component={Paper}>
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell sx={{ fontSize: '16px' }}>Order ID</TableCell>
-                                    <TableCell align="center" sx={{ fontSize: '16px' }}>User Name</TableCell>
-                                    <TableCell align="right" sx={{ fontSize: '16px' }}>Products</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {orders.map((order) => (
-                                    <TableRow key={order.id}>
-                                        <TableCell component="th" scope="row" sx={{ fontSize: '14px' }}>
-                                            {order.id}
-                                        </TableCell>
-                                        <TableCell align="center" sx={{ fontSize: '14px' }}>
-                                            {order.attributes.userName}
-                                        </TableCell>
-                                        <TableCell align="right" sx={{ fontSize: '14px' }}>
-                                            {order.attributes.products.map((product) => (
-                                                <div key={product.id}>
-                                                    {product.count} {getProductName(product.id)}
-                                                </div>
-                                            ))}
-                                        </TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                )}
-                {view === 'users' && (
-                    <Box>
-                        <h2>Users</h2>
-                        <p>Coming soon...</p>
-                    </Box>
-                )}
+                {view === 'orders' && <Orders />}
+                {view === 'users' && <Users />}
             </Box>
         </Box>
     );
