@@ -9,13 +9,19 @@ const Admin = () => {
     const dispatch = useDispatch();
 
     async function getOrders() {
-        const response = await fetch(`http://localhost:4000/api/orders`, { method: 'GET' });
+        const response = await fetch(
+            "http://localhost:4000/api/orders",
+            { method: 'GET' }
+        );
         const ordersJson = await response.json();
         setOrders(ordersJson.data);
     }
 
     async function getItems() {
-        const items = await fetch("http://localhost:4000/api/items", { method: "GET" });
+        const items = await fetch(
+            "http://localhost:4000/api/items",
+            { method: "GET" }
+        );
         const itemsJson = await items.json();
         dispatch(setItems(itemsJson.data));
     }
