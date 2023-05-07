@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box } from '@mui/material';
-import {useDispatch, useSelector} from 'react-redux';
-import {setItems} from "../../state";
+import { useSelector } from 'react-redux';
 
 const Admin = () => {
     const [orders, setOrders] = useState([]);
     const items = useSelector((state) => state.cart.items);
-    const dispatch = useDispatch();
 
     async function getOrders() {
         const response = await fetch(
@@ -17,18 +15,8 @@ const Admin = () => {
         setOrders(ordersJson.data);
     }
 
-    async function getItems() {
-        const items = await fetch(
-            "http://localhost:4000/api/items",
-            { method: "GET" }
-        );
-        const itemsJson = await items.json();
-        dispatch(setItems(itemsJson.data));
-    }
-
     useEffect(() => {
         getOrders();
-        getItems();
     }, []);
 
     function getProductName(productId) {

@@ -40,7 +40,6 @@ function Navbar() {
                 <Box
                     onClick={() => {
                         navigate("/");
-                        window.location.reload();
                     }}
                     sx={{
                         "&:hover": { cursor: "pointer" },
