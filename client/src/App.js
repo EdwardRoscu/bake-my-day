@@ -10,6 +10,7 @@ import Footer from "./scenes/global/Footer";
 import Admin from "./scenes/admin/Admin";
 import Login from "./scenes/auth/Login";
 import Register from "./scenes/auth/Register";
+import Search from "./scenes/search/Search";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -36,6 +37,7 @@ function App() {
               <Route path="admin" element={<Admin />} />
               <Route path="auth/login" element={<Login />} />
               <Route path="auth/register" element={<Register />} />
+              <Route path="search" element={<Search />} />
             </Routes>
           </main>
           <CartMenu />

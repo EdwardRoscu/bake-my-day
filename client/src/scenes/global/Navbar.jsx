@@ -55,7 +55,10 @@ function Navbar() {
                     justifyContent = "space-between"
                     columnGap = "20px"
                 >
-                    <IconButton sx = {{ color: "black"}}>
+                    <IconButton 
+                       onClick={() => {navigate("/search")}}
+                       sx = {{ color: "black"}}
+                     >
                         <SearchOutlined />
                     </IconButton>
                     <IconButton
