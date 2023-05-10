@@ -1,9 +1,9 @@
 import MainCarousel from "./MainCarousel";
 import ShoppingList from "./ShoppingList";
 
-function Home() {
+const Home = () => {
     return (
-        <div className="home">
+        <div>
             <MainCarousel />
             <ShoppingList />
         </div>

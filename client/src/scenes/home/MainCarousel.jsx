@@ -17,43 +17,55 @@ export const heroTextureImports = importAll(
 
 const MainCarousel = () => {
     const isNonMobile = useMediaQuery("(min-width:600px)");
+    const arrowSize = 50;
+    const arrowSizeHover = 60;
     return (
         <Box position="relative">
             <Carousel
                 infiniteLoop={true}
                 showThumbs={false}
-                showIndicators={false}
+                showIndicators={true}
                 showStatus={false}
                 autoPlay={true}
                 interval={5000}
-                renderArrowPrev={(onClickHandler, hasPrev, label) => (
+                renderArrowPrev={onClickHandler => (
                     <IconButton
                         onClick={onClickHandler}
+                        disableRipple
                         sx={{
                             position: "absolute",
                             top: "50%",
+                            transform: "translateY(-50%)",
                             left: "0",
                             color: "white",
-                            padding: "5px",
                             zIndex: "20",
+                            '&:hover': {
+                                '& svg': { fontSize: arrowSizeHover },
+                                transform: 'translateY(-50%)'
+                            }
                         }}
                     >
-                        <NavigateBeforeIcon sx={{ fontSize: 40 }} />
+                        <NavigateBeforeIcon sx={{ fontSize: arrowSize }} />
                     </IconButton>
                 )}
-                renderArrowNext={(onClickHandler, hasNext, label) => (
+                renderArrowNext={onClickHandler => (
                     <IconButton
                         onClick={onClickHandler}
+                        disableRipple
                         sx={{
                             position: "absolute",
                             top: "50%",
+                            transform: "translateY(-50%)",
                             right: "0",
                             color: "white",
-                            padding: "5px",
                             zIndex: "20",
+                            '&:hover': {
+                                '& svg': { fontSize: arrowSizeHover },
+                                transform: 'translateY(-50%)'
+                            }
                         }}
                     >
-                        <NavigateNextIcon sx={{ fontSize: 40 }} />
+                        <NavigateNextIcon sx={{ fontSize: arrowSize }} />
                     </IconButton>
                 )}
             >
@@ -64,7 +76,7 @@ const MainCarousel = () => {
                             alt={`carousel-${index}`}
                             style={{
                                 width: "100%",
-                                height: "650px",
+                                height: "600px",
                                 objectFit: "cover",
                                 backgroundAttachment: "fixed",
                             }}

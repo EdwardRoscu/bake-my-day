@@ -38,6 +38,7 @@ function Navbar() {
                 alignItems = "center"
             >
                 <Box
+                    className="navbar-button"
                     onClick={() => {
                         navigate("/");
                     }}
@@ -55,10 +56,14 @@ function Navbar() {
                     justifyContent = "space-between"
                     columnGap = "20px"
                 >
-                    <IconButton sx = {{ color: "black"}}>
+                    <IconButton
+                        className="navbar-button"
+                        sx = {{ color: "black"}}
+                    >
                         <SearchOutlined />
                     </IconButton>
                     <IconButton
+                        className="navbar-button"
                         onClick={() => navigate("/auth/login")}
                         sx = {{ color: "black"}}
                     >
@@ -79,6 +84,7 @@ function Navbar() {
                         }}
                     >
                         <IconButton
+                            className="navbar-button"
                             onClick = {() => dispatch(setIsCartOpen({}))}
                             sx = {{ color: "black" }}
                         >
@@ -86,6 +92,7 @@ function Navbar() {
                         </IconButton>
                     </Badge>
                     <IconButton
+                        className="navbar-button"
                         onClick={() => navigate("/admin")}
                         sx = {{ color: "black" }}
                     >
