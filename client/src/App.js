@@ -10,6 +10,7 @@ import Footer from "./scenes/global/Footer";
 import Admin from "./scenes/admin/Admin";
 import Login from "./scenes/auth/Login";
 import Register from "./scenes/auth/Register";
+import { Box } from "@mui/material";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -23,11 +24,11 @@ const ScrollToTop = () => {
 
 function App() {
   return (
-      <div className="app">
+      <Box className="box-container">
         <BrowserRouter>
           <Navbar />
           <ScrollToTop />
-          <main className="main-content">
+          <Box flex={1} paddingTop="60px">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="item/:itemId" element={<ItemDetails />} />
@@ -37,11 +38,11 @@ function App() {
               <Route path="auth/login" element={<Login />} />
               <Route path="auth/register" element={<Register />} />
             </Routes>
-          </main>
+          </Box>
           <CartMenu />
           <Footer />
         </BrowserRouter>
-      </div>
+      </Box>
   );
 }
 

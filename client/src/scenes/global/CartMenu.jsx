@@ -5,12 +5,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { shades } from "../../theme";
-import {
-  decreaseCount,
-  increaseCount,
-  removeFromCart,
-  setIsCartOpen,
-} from "../../state";
+import { decreaseCount, increaseCount, removeFromCart, setIsCartOpen } from "../../state";
 import { useNavigate } from "react-router-dom";
 import React, { useRef, useEffect, useCallback } from "react";
 
@@ -35,7 +30,9 @@ const CartMenu = () => {
   const handleClickOutside = useCallback((event) => {
     if (cartMenuRef.current && !cartMenuRef.current.contains(event.target)) {
       const isNavbarClick = event.target.closest("#navbar");
-      if (isNavbarClick) return;
+      const isNavbarButtonClick = event.target.classList.contains("navbar-button") || event.target.closest(".navbar-button");
+
+      if (isNavbarClick && !isNavbarButtonClick) return;
 
       dispatch(setIsCartOpen({}));
     }
@@ -66,6 +63,7 @@ const CartMenu = () => {
           overflow="auto"
       >
         <Box
+            paddingTop="60px"
             ref={cartMenuRef}
             position="fixed"
             right="0"
@@ -75,15 +73,14 @@ const CartMenu = () => {
             backgroundColor="white"
         >
           <Box padding="30px" overflow="auto" height="100%">
-            {/* HEADER */}
             <FlexBox mb="15px">
-              <Typography variant="h3">SHOPPING BAG ({cart.length})</Typography>
+              <Typography variant="h3">
+                SHOPPING BAG ({cart.length})
+              </Typography>
               <IconButton onClick={() => dispatch(setIsCartOpen({}))}>
                 <CloseIcon />
               </IconButton>
             </FlexBox>
-
-            {/* CART LIST */}
             <Box>
               {cart.map((item) => (
                   <Box key={`${item.attributes.name}-${item.id}`}>
@@ -91,8 +88,8 @@ const CartMenu = () => {
                       <Box flex="1 1 40%">
                         <img
                             alt={item?.name}
-                            width="123px"
-                            height="164px"
+                            width="140px"
+                            height="140px"
                             src={`http://localhost:4000${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
                         />
                       </Box>

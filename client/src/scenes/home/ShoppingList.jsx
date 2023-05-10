@@ -41,6 +41,12 @@ const ShoppingList = () => {
         (item) => item.attributes.category === "pies"
     );
 
+    const sharedTabStyles = {
+        '&:hover': {
+            backgroundColor: 'rgba(0, 0, 0, 0.015)',
+        },
+    };
+
     return (
         <Box width="80%" margin="50px auto">
             <Typography variant="h2" textAlign="center">
@@ -64,10 +70,10 @@ const ShoppingList = () => {
                     },
                 }}
             >
-                <Tab label="ALL" value="all" />
-                <Tab label="CAKES" value="cakes" />
-                <Tab label="COOKIES" value="cookies" />
-                <Tab label="PIES" value="pies" />
+                <Tab label="ALL" value="all" sx={sharedTabStyles} />
+                <Tab label="CAKES" value="cakes" sx={sharedTabStyles} />
+                <Tab label="COOKIES" value="cookies" sx={sharedTabStyles} />
+                <Tab label="PIES" value="pies" sx={sharedTabStyles} />
             </Tabs>
             <Box
                 margin="0 auto"
@@ -76,6 +82,7 @@ const ShoppingList = () => {
                 justifyContent="space-around"
                 rowGap="20px"
                 columnGap="1.5%"
+                minHeight="400px"
             >
                 {value === "all" &&
                     items.map((item) => (
