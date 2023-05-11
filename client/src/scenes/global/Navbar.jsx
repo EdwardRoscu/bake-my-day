@@ -1,19 +1,30 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Badge, Box, IconButton } from "@mui/material";
-import {
-    PersonOutline,
-    ShoppingBagOutlined,
-    MenuOutlined,
-    SearchOutlined,
-} from "@mui/icons-material";
+import { PersonOutline, ShoppingBagOutlined, MenuOutlined, SearchOutlined } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { shades } from "../../theme";
 import { setIsCartOpen } from "../../state";
+import axios from 'axios';
 
 function Navbar() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart.cart);
+
+    const handleProfile = async () => {
+        localStorage.removeItem('jwt');
+        try {
+            const response = await axios.get('http://localhost:4000/api/users/me');
+
+            if (response.data.user["isAdmin"]) {
+                navigate('/admin');
+            } else {
+                navigate('/item/2');
+            }
+        } catch (error) {
+            navigate('/auth/login');
+        }
+    };
 
     return (
         <Box
@@ -38,11 +49,9 @@ function Navbar() {
                 alignItems = "center"
             >
                 <Box
-                    className="navbar-button"
-                    onClick={() => {
-                        navigate("/");
-                    }}
-                    sx={{
+                    className = "navbar-button"
+                    onClick = {() => navigate("/")}
+                    sx = {{
                         "&:hover": { cursor: "pointer" },
                         color: shades.secondary[500],
                         fontSize: "20px",
@@ -57,14 +66,14 @@ function Navbar() {
                     columnGap = "20px"
                 >
                     <IconButton
-                        className="navbar-button"
+                        className = "navbar-button"
                         sx = {{ color: "black"}}
                     >
                         <SearchOutlined />
                     </IconButton>
                     <IconButton
-                        className="navbar-button"
-                        onClick={() => navigate("/auth/login")}
+                        className = "navbar-button"
+                        onClick = {handleProfile}
                         sx = {{ color: "black"}}
                     >
                         <PersonOutline />
@@ -84,7 +93,7 @@ function Navbar() {
                         }}
                     >
                         <IconButton
-                            className="navbar-button"
+                            className = "navbar-bag-button"
                             onClick = {() => dispatch(setIsCartOpen({}))}
                             sx = {{ color: "black" }}
                         >
@@ -92,8 +101,8 @@ function Navbar() {
                         </IconButton>
                     </Badge>
                     <IconButton
-                        className="navbar-button"
-                        onClick={() => navigate("/admin")}
+                        className = "navbar-button"
+                        // onClick = {() => navigate("/")}
                         sx = {{ color: "black" }}
                     >
                         <MenuOutlined />

@@ -31,7 +31,17 @@ const Login = () => {
                     password: values.password,
                 });
                 console.log(response.data);
-                navigate("/");
+
+                const jwt = response.data.jwt;
+                if (jwt) {
+                    localStorage.setItem('jwt', jwt);
+                }
+
+                if (response.data.user["isAdmin"]) {
+                    navigate("/admin");
+                } else {
+                    navigate("/profile");
+                }
             } catch (error) {
                 console.error('An error occurred:', error.response);
                 setErrorMessage(error.response.data.error.message || 'An error occurred.');
