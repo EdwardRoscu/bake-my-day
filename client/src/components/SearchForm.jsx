@@ -1,4 +1,4 @@
-import {  Container, Input, Typography } from "@mui/material";
+import {  Container, Input, Typography, Button } from "@mui/material";
 import {  useNavigate} from "react-router-dom";
 import { useState } from "react";
 
@@ -15,6 +15,7 @@ const SearchForm = () => {
        event.preventDefault();
         if(searchTerm.length > 0){
             navigate(`/search?query=${searchTerm}`);
+            window.location.reload();
             document.querySelector('input').value = '';
             setSearchTerm('');
         }
@@ -23,9 +24,9 @@ const SearchForm = () => {
     return (
     
        <Container maxWidth="s">
-         <Typography variant="h5">Searching for the Best Dessert &#x1F50E;</Typography>
+         <Typography variant="h5">&#x1F370; Searching for the Best Dessert 	&#x1F369;</Typography>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} >
                 <Input
                     fullWidth
                     onChange={handleSearchInput}
@@ -35,6 +36,7 @@ const SearchForm = () => {
                     id="search-field"
                     placeholder="What is your sweet desire?! SEARCH HERE!"
                  />
+                 
             </form>
          </Container>
     );
