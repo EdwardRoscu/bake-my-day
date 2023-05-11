@@ -14,7 +14,6 @@ function Navbar() {
     const handleProfile = async () => {
         try {
             const response = await axios.get('http://localhost:4000/api/users/me');
-            console.log('API response:', response);
 
             if (response.data["isAdmin"]) {
                 navigate('/admin');
@@ -22,7 +21,7 @@ function Navbar() {
                 navigate('/profile');
             }
         } catch (error) {
-            console.log('API request failed:', error);
+            localStorage.removeItem('jwt');
             navigate('/auth/login');
         }
     };

@@ -30,7 +30,6 @@ const Login = () => {
                     identifier: values.identifier,
                     password: values.password,
                 });
-                console.log(response.data);
 
                 const jwt = response.data.jwt;
                 if (jwt) {
@@ -43,7 +42,6 @@ const Login = () => {
                     navigate("/profile");
                 }
             } catch (error) {
-                console.error('An error occurred:', error.response);
                 setErrorMessage(error.response.data.error.message || 'An error occurred.');
             }
         },
