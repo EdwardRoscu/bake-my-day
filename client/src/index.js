@@ -8,9 +8,6 @@ import { theme } from "./theme";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./state";
-import setupAxios from './utils/setupAxios';
-
-setupAxios();
 
 const store = configureStore({
     reducer: { cart: cartReducer }

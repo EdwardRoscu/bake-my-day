@@ -12,16 +12,17 @@ function Navbar() {
     const cart = useSelector((state) => state.cart.cart);
 
     const handleProfile = async () => {
-        localStorage.removeItem('jwt');
         try {
             const response = await axios.get('http://localhost:4000/api/users/me');
+            console.log('API response:', response);
 
-            if (response.data.user["isAdmin"]) {
+            if (response.data["isAdmin"]) {
                 navigate('/admin');
             } else {
-                navigate('/item/2');
+                navigate('/profile');
             }
         } catch (error) {
+            console.log('API request failed:', error);
             navigate('/auth/login');
         }
     };

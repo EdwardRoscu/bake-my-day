@@ -12,6 +12,7 @@ import Profile from "./scenes/user/Profile";
 import Login from "./scenes/auth/Login";
 import Register from "./scenes/auth/Register";
 import { Box } from "@mui/material";
+import setupAxios from './utils/setupAxios';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -24,6 +25,9 @@ const ScrollToTop = () => {
 };
 
 function App() {
+  
+  setupAxios();
+
   return (
       <Box className="box-container">
         <BrowserRouter>
