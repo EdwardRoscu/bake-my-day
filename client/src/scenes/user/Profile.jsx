@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Box, Button } from '@mui/material';
 import Sidebar from './Sidebar';
-import Orders from './Orders';
-import Users from './Users';
+import Option1 from './Option1';
+import Option2 from './Option2';
 import { useNavigate } from "react-router-dom";
 
-const Admin = () => {
+const Profile = () => {
     const navigate = useNavigate();
     const [view, setView] = useState('orders');
 
@@ -28,12 +28,12 @@ const Admin = () => {
                     </Button>
                 </Box>
                 <Box width="90%" m="70px auto">
-                    {view === 'orders' && <Orders />}
-                    {view === 'users' && <Users />}
+                    {view === 'option1' && <Option1 />}
+                    {view === 'option2' && <Option2 />}
                 </Box>
             </Box>
         </Box>
     );
 };
 
-export default Admin;
+export default Profile;
