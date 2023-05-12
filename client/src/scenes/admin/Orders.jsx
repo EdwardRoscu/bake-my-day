@@ -1,35 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React from 'react';
+import {useSelector} from 'react-redux';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import {setItems} from "../../state";
+import {useFetch} from "../../hooks/useFetch";
 
 const Orders = () => {
-    const [orders, setOrders] = useState([]);
+    const orders = useFetch("http://localhost:4000/api/orders", json => json.data);
     const items = useSelector((state) => state.cart.items);
-    const dispatch = useDispatch();
-
-    const getOrders = useCallback(async () => {
-        const response = await fetch(
-            "http://localhost:4000/api/orders",
-            { method: 'GET' }
-        );
-        const ordersJson = await response.json();
-        setOrders(ordersJson.data);
-    }, []);
-
-    const getItems = useCallback(async () => {
-        const items = await fetch(
-            "http://localhost:4000/api/items",
-            { method: "GET" }
-        );
-        const itemsJson = await items.json();
-        dispatch(setItems(itemsJson.data));
-    }, [dispatch]);
-
-    useEffect(() => {
-        getOrders();
-        getItems();
-    }, [getOrders, getItems]);
 
     function getProductName(productId) {
         const item = items.find(item => item.id === productId);
@@ -41,9 +17,9 @@ const Orders = () => {
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell sx={{ fontSize: '16px' }}>Order ID</TableCell>
-                        <TableCell align="center" sx={{ fontSize: '16px' }}>User Name</TableCell>
-                        <TableCell align="right" sx={{ fontSize: '16px' }}>Products</TableCell>
+                        <TableCell sx={{ fontSize: '16px', width: '20%' }}>Order ID</TableCell>
+                        <TableCell sx={{ fontSize: '16px', width: '40%' }}>User Name</TableCell>
+                        <TableCell sx={{ fontSize: '16px', width: '40%' }}>Products</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -52,10 +28,10 @@ const Orders = () => {
                             <TableCell component="th" scope="row" sx={{ fontSize: '14px' }}>
                                 {order.id}
                             </TableCell>
-                            <TableCell align="center" sx={{ fontSize: '14px' }}>
+                            <TableCell sx={{ fontSize: '14px' }}>
                                 {order.attributes.userName}
                             </TableCell>
-                            <TableCell align="right" sx={{ fontSize: '14px' }}>
+                            <TableCell sx={{ fontSize: '14px' }}>
                                 {order.attributes.products.map((product) => (
                                     <div key={product.id}>
                                         {product.count} {getProductName(product.id)}

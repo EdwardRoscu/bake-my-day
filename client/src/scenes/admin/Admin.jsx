@@ -27,7 +27,7 @@ const Admin = () => {
                         Logout
                     </Button>
                 </Box>
-                <Box width="90%" m="70px auto">
+                <Box width="80%" m="70px auto">
                     {view === 'orders' && <Orders />}
                     {view === 'users' && <Users />}
                 </Box>
