@@ -15,3 +15,5 @@ export const useFetch = (url, processData = json => json) => {
 
     return data;
 };
+
+export default useFetch;

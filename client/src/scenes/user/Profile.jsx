@@ -15,7 +15,7 @@ const Profile = () => {
 
     function handleLogout() {
         localStorage.removeItem('jwt');
-        navigate("/");
+        navigate("/auth/login");
     }
 
     return (
@@ -27,7 +27,7 @@ const Profile = () => {
                         Logout
                     </Button>
                 </Box>
-                <Box width="90%" m="70px auto">
+                <Box width="80%" m="70px auto">
                     {view === 'option1' && <Option1 />}
                     {view === 'option2' && <Option2 />}
                 </Box>

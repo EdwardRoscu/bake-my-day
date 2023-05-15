@@ -15,7 +15,7 @@ const Admin = () => {
 
     function handleLogout() {
         localStorage.removeItem('jwt');
-        navigate("/");
+        navigate("/auth/login");
     }
 
     return (

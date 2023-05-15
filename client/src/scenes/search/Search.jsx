@@ -11,59 +11,75 @@ const Search = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
-    const searchTerm = searchParams.get('query');
+    const searchTerm = searchParams.get("query");
 
     const [searchedItems, setSearchedItems] = useState([]);
 
     const getItems = useCallback(async () => {
-        const items = await fetch(
-            `http://localhost:4000/api/items?populate=image`,
-            { method: "GET" }
-        );
-        const itemsJson = await items.json();
-        dispatch(setItems(itemsJson.data));
+        try {
+            const response = await fetch(`http://localhost:4000/api/items?populate=image`, {
+                method: "GET",
+            });
+            const itemsJson = await response.json();
+            dispatch(setItems(itemsJson.data));
+        } catch (error) {
+            console.error("Failed to fetch items:", error);
+        }
     }, [dispatch]);
 
     const getSearchedItems = useCallback(async () => {
-        const searchedItems = await fetch(
-            `http://localhost:4000/api/items?populate=*&filters[name][$contains]=${searchTerm}`,
-            { method: "GET" }
-        );
-        const searchedItemsJson = await searchedItems.json();
-        dispatch(setSearchedItems(searchedItemsJson.data));
-    }, [dispatch]);
+        try {
+            const response = await fetch(
+                `http://localhost:4000/api/items?populate=*&filters[name][$contains]=${searchTerm}`,
+                { method: "GET" }
+            );
+            const searchedItemsJson = await response.json();
+            setSearchedItems(searchedItemsJson.data);
+        } catch (error) {
+            console.error("Failed to fetch searched items:", error);
+        }
+    }, [searchTerm]);
 
     useEffect(() => {
         getItems();
         getSearchedItems();
-    }, [getItems]);
+    }, [searchTerm, getItems, getSearchedItems]);
 
+    const getResultMessage = () => {
+        if (searchedItems?.length > 0) {
+            return `${searchedItems?.length} results for "${searchTerm}"`;
+        } else if (!searchTerm) {
+            return `Here will be your search results!`;
+        } else {
+            return `No results found for ${searchTerm}`;
+        }
+    };
+
+    const renderItems = () => {
+        return searchedItems.map(item => (
+            <Item item={item} key={`${item.name}-${item.id}`} />
+        ));
+    };
 
     return (
-
-        <Box width="80%" m="100px auto">
-            <SearchForm />
-            <Box width="96%" m="40px auto">
-                <Typography variant="h6">
-                    {(function(){
-                        if (searchedItems?.length > 0) {
-                            return `${searchedItems?.length} results for ${searchTerm}`
-                        }else if (`${searchTerm}` === "null") {
-                            return `Here will be your search results!`
-                        } else {
-                            return `No results found for ${searchTerm}`
-                        }
-                    }).call(this)}
-
-                </Typography>
-                <Box
-                    mt="10px"
-                    display="flex"
-                    flexWrap="wrap"
-                    columnGap="1.33%"
-                > {searchedItems.map((item) => (
-                    <Item item={item} key={`${item.name}-${item.id}`} />
-                ))}
+        <Box>
+            <Box width="80%" m="70px auto">
+                <SearchForm />
+                <Box m="40px auto">
+                    <Typography variant="h5" style={{ padding: '10px', marginLeft: '12px' }}>
+                        {getResultMessage()}
+                    </Typography>
+                    <Box
+                        margin="0 auto"
+                        display="grid"
+                        gridTemplateColumns="repeat(auto-fill, 300px)"
+                        justifyContent="space-around"
+                        rowGap="20px"
+                        columnGap="1.5%"
+                        minHeight="400px"
+                    >
+                        {renderItems()}
+                    </Box>
                 </Box>
             </Box>
             <ShoppingList />

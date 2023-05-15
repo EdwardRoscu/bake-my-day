@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Box } from "@mui/material";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Checkout from "./scenes/checkout/Checkout";
 import Home from "./scenes/home/Home";
 import ItemDetails from "./scenes/itemDetails/ItemDetails";
@@ -12,19 +12,8 @@ import Profile from "./scenes/user/Profile";
 import Login from "./scenes/auth/Login";
 import Register from "./scenes/auth/Register";
 import Search from "./scenes/search/Search";
-import { Box } from "@mui/material";
 import setupAxios from './utils/setupAxios';
-import {useFetchAndDispatchItems} from "./hooks/useFetchAndDispatchItems";
-
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
-};
+import useFetchAndDispatchItems from "./hooks/useFetchAndDispatchItems";
 
 function App() {
   
@@ -35,7 +24,6 @@ function App() {
       <Box className="box-container">
         <BrowserRouter>
           <Navbar />
-          <ScrollToTop />
           <Box flex={1} paddingTop="60px">
             <Routes>
               <Route path="/" element={<Home />} />
