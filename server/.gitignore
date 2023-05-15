@@ -113,3 +113,9 @@ exports
 dist
 build
 .strapi-updater.json
+
+############################
+# Documentation
+############################
+
+full_documentation.json
