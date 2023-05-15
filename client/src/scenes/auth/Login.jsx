@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, TextField, Container, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const validationSchema = yup.object({
     identifier: yup
@@ -15,6 +16,8 @@ const validationSchema = yup.object({
 });
 
 const Login = () => {
+    const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState('');
     const formik = useFormik({
         initialValues: {
             identifier: '',
@@ -22,7 +25,25 @@ const Login = () => {
         },
         validationSchema: validationSchema,
         onSubmit: async (values) => {
-            // Handle login with Strapi here.
+            try {
+                const response = await axios.post('http://localhost:4000/api/auth/local', {
+                    identifier: values.identifier,
+                    password: values.password,
+                });
+
+                const jwt = response.data.jwt;
+                if (jwt) {
+                    localStorage.setItem('jwt', jwt);
+                }
+
+                if (response.data.user["isAdmin"]) {
+                    navigate("/admin");
+                } else {
+                    navigate("/profile");
+                }
+            } catch (error) {
+                setErrorMessage(error.response.data.error.message || 'An error occurred.');
+            }
         },
     });
 
@@ -54,6 +75,11 @@ const Login = () => {
                         helperText={formik.touched.password && formik.errors.password}
                         margin="normal"
                     />
+                    {errorMessage && (
+                        <Typography variant="body1" color="error" align="center">
+                            {errorMessage}
+                        </Typography>
+                    )}
                     <Button
                         color="primary"
                         variant="contained"

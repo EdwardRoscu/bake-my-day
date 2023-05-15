@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, TextField, Container, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const validationSchema = yup.object({
     email: yup
@@ -20,6 +21,8 @@ const validationSchema = yup.object({
 });
 
 const Register = () => {
+    const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState(null);
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -28,7 +31,36 @@ const Register = () => {
         },
         validationSchema: validationSchema,
         onSubmit: async (values) => {
-            // Handle registration with Strapi here.
+            try {
+                const response = await axios.post('http://localhost:4000/api/auth/local/register', {
+                    username: values.username,
+                    email: values.email,
+                    password: values.password,
+                });
+
+                if (response.status === 200) {
+                    navigate("/auth/login");
+                }
+            } catch (error) {
+                if (error.response && error.response.status) {
+                    if (error.response.status === 400) {
+                        // Validation error, the provided data did not pass server validation
+                        setErrorMessage('Validation error: ' + error.response.data.error.message);
+                    } else if (error.response.status >= 500) {
+                        // Server error, something went wrong on the server
+                        setErrorMessage('Server error. Please try again later.');
+                    } else {
+                        // Other status codes
+                        setErrorMessage('An error occurred. Please try again.');
+                    }
+                } else if (error.request) {
+                    // The request was made but no response was received
+                    setErrorMessage('No response was received from the server. Please check your internet connection and try again.');
+                } else {
+                    // Other errors (like losing internet connection)
+                    setErrorMessage('An error occurred while making the request. Please check your internet connection and try again.');
+                }
+            }
         },
     });
 
@@ -71,6 +103,11 @@ const Register = () => {
                         helperText={formik.touched.password && formik.errors.password}
                         margin="normal"
                     />
+                    {errorMessage && (
+                        <Typography variant="body1" color="error" align="center">
+                            {errorMessage}
+                        </Typography>
+                    )}
                     <Button
                         color="primary"
                         variant="contained"

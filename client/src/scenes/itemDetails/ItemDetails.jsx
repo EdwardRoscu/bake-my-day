@@ -10,6 +10,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { shades } from "../../theme";
 import { addToCart } from "../../state";
 import { useDispatch } from "react-redux";
+import {useFetch} from "../../hooks/useFetch";
 
 const ItemDetails = () => {
     const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const ItemDetails = () => {
     const [value, setValue] = useState("description");
     const [count, setCount] = useState(1);
     const [item, setItem] = useState(null);
-    const [items, setItems] = useState([]);
+    const items = useFetch("http://localhost:4000/api/items?populate=image", json => json.data);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -32,18 +33,8 @@ const ItemDetails = () => {
         setItem(itemJson.data);
     }
 
-    async function getItems() {
-        const items = await fetch(
-            `http://localhost:4000/api/items?populate=image`,
-            { method: "GET" }
-        );
-        const itemsJson = await items.json();
-        setItems(itemsJson.data);
-    }
-
     useEffect(() => {
         getItem();
-        getItems();
     }, [itemId]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
