@@ -118,4 +118,4 @@ build
 # Documentation
 ############################
 
-full_documentation.json
+**/full_documentation.json

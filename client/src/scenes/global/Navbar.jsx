@@ -67,6 +67,7 @@ function Navbar() {
                 >
                     <IconButton
                         className = "navbar-button"
+                        onClick={() => navigate("/search")}
                         sx = {{ color: "black"}}
                     >
                         <SearchOutlined />
