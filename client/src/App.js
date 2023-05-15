@@ -11,6 +11,7 @@ import Admin from "./scenes/admin/Admin";
 import Profile from "./scenes/user/Profile";
 import Login from "./scenes/auth/Login";
 import Register from "./scenes/auth/Register";
+import Search from "./scenes/search/Search";
 import { Box } from "@mui/material";
 import setupAxios from './utils/setupAxios';
 import {useFetchAndDispatchItems} from "./hooks/useFetchAndDispatchItems";
@@ -45,6 +46,7 @@ function App() {
               <Route path="profile" element={<Profile />} />
               <Route path="auth/login" element={<Login />} />
               <Route path="auth/register" element={<Register />} />
+              <Route path="search" element={<Search />} />
             </Routes>
           </Box>
           <CartMenu />
