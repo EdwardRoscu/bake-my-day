@@ -30,7 +30,10 @@ const Search = () => {
     const getSearchedItems = useCallback(async () => {
         try {
             const response = await fetch(
-                `http://localhost:4000/api/items?populate=*&filters[name][$contains]=${searchTerm}`,
+                `http://localhost:4000/api/items?populate=*
+                &filters[$or][0][name][$contains]=${searchTerm}
+                &filters[$or][1][shortDescription][$contains]=${searchTerm}
+                &filters[$or][2][longDescription][$contains]=${searchTerm}`,
                 { method: "GET" }
             );
             const searchedItemsJson = await response.json();
@@ -76,7 +79,7 @@ const Search = () => {
                         justifyContent="space-around"
                         rowGap="20px"
                         columnGap="1.5%"
-                        minHeight="400px"
+                        minHeight="100px"
                     >
                         {renderItems()}
                     </Box>

@@ -14,6 +14,7 @@ import Register from "./scenes/auth/Register";
 import Search from "./scenes/search/Search";
 import setupAxios from './utils/setupAxios';
 import useFetchAndDispatchItems from "./hooks/useFetchAndDispatchItems";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   
@@ -25,6 +26,7 @@ function App() {
         <BrowserRouter>
           <Navbar />
           <Box flex={1} paddingTop="60px">
+            <ScrollToTop />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="item/:itemId" element={<ItemDetails />} />
