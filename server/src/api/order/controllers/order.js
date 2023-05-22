@@ -9,7 +9,7 @@ const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::order.order", ({ strapi }) => ({
   async create(ctx) {
-    const { products, userName, email } = ctx.request.body;
+    const { products, userName, email, phone } = ctx.request.body;
     try {
       // retrieve item information
       const lineItems = await Promise.all(
@@ -20,7 +20,7 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
 
           return {
             price_data: {
-              currency: "usd",
+              currency: "eur",
               product_data: {
                 name: item.name,
               },
@@ -44,9 +44,8 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
       // create the item
       await strapi
         .service("api::order.order")
-        .create({ data: { userName, products, stripeSessionId: session.id } });
+        .create({ data: { userName, products, stripeSessionId: session.id, email, phone } });
 
-      // return the session id
       return { id: session.id };
     } catch (error) {
       ctx.response.status = 500;
