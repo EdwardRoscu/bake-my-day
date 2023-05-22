@@ -38,14 +38,15 @@ const Checkout = () => {
 
     async function makePayment(values) {
         const stripe = await stripePromise;
+
         const requestBody = {
-            userName: [values.firstName, values.lastName].join(" "),
+            userName: [values.billingAddress.firstName, values.billingAddress.lastName].join(" "),
             email: values.email,
-            products: cart.map(({ id, count }) => ({
-                id,
-                count,
-            })),
+            phone: values.phoneNumber,
+            products: cart.map(({ id, count }) => ({ id, count })),
         };
+
+        console.log('Data being sent to the database: ', requestBody);
 
         const response = await fetch(
             "http://localhost:4000/api/orders",
