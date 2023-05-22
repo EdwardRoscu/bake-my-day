@@ -93,4 +93,17 @@ describe("Default User methods", () => {
         expect(data.body.user).toBeDefined();
       });
   });
+
+  it("should return an error for a bad login", async () => {
+    await request(strapi.server.httpServer)
+      .post("/api/auth/local")
+      .set("accept", "application/json")
+      .set("Content-Type", "application/json")
+      .send({
+        identifier: user.email,
+        password: "incorrect_password",
+      })
+      .expect("Content-Type", /json/)
+      .expect(400);
+  });
 });
