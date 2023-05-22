@@ -46,8 +46,6 @@ const Checkout = () => {
             products: cart.map(({ id, count }) => ({ id, count })),
         };
 
-        console.log('Data being sent to the database: ', requestBody);
-
         const response = await fetch(
             "http://localhost:4000/api/orders",
             {
