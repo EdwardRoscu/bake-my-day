@@ -18,6 +18,7 @@ const validationSchema = yup.object({
 const Login = () => {
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
+
     const formik = useFormik({
         initialValues: {
             identifier: '',
@@ -34,6 +35,11 @@ const Login = () => {
                 const jwt = response.data.jwt;
                 if (jwt) {
                     localStorage.setItem('jwt', jwt);
+                }
+
+                const user = response.data.user;
+                if (user) {
+                    localStorage.setItem('user', JSON.stringify(user));
                 }
 
                 if (response.data.user["isAdmin"]) {

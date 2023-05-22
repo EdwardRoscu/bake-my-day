@@ -25,7 +25,7 @@ function App() {
       <Box className="box-container">
         <BrowserRouter>
           <Navbar />
-          <Box flex={1} paddingTop="60px">
+          <Box flex={1} paddingTop="50px">
             <ScrollToTop />
             <Routes>
               <Route path="/" element={<Home />} />

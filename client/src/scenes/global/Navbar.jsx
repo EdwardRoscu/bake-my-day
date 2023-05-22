@@ -1,6 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Badge, Box, IconButton } from "@mui/material";
-import { PersonOutline, ShoppingBagOutlined, MenuOutlined, SearchOutlined } from "@mui/icons-material";
+import {
+    PersonOutline,
+    ShoppingBagOutlined,
+    MenuOutlined,
+    SearchOutlined,
+    CheckCircleOutline
+} from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { shades } from "../../theme";
 import { setIsCartOpen } from "../../state";
@@ -10,6 +16,8 @@ function Navbar() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart.cart);
+    const isLoggedIn = localStorage.getItem('jwt') && localStorage.getItem('user');
+    const iconSize = 22;
 
     const handleProfile = async () => {
         try {
@@ -32,7 +40,7 @@ function Navbar() {
             display = "flex"
             alignItems = "center"
             width = "100%"
-            height = "60px"
+            height = "50px"
             backgroundColor = "rgba(255, 255, 255, 1)"
             color = "black"
             position ="fixed"
@@ -68,17 +76,25 @@ function Navbar() {
                     <IconButton
                         className = "navbar-button"
                         onClick={() => navigate("/search")}
-                        sx = {{ color: "black"}}
+                        sx = {{ color: "black" }}
                     >
-                        <SearchOutlined />
+                        <SearchOutlined style={{ fontSize: iconSize }} />
                     </IconButton>
-                    <IconButton
-                        className = "navbar-button"
-                        onClick = {handleProfile}
-                        sx = {{ color: "black"}}
+
+                    <Badge
+                        overlap="circular"
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                        badgeContent={isLoggedIn ? <CheckCircleOutline style={{ fontSize: 16, color: 'green' }} /> : null}
                     >
-                        <PersonOutline />
-                    </IconButton>
+                        <IconButton
+                            className = "navbar-button"
+                            onClick = {handleProfile}
+                            sx = {{ color: "black" }}
+                        >
+                            <PersonOutline style={{ fontSize: iconSize }} />
+                        </IconButton>
+                    </Badge>
+
                     <Badge
                         badgeContent = { cart.length }
                         color = "secondary"
@@ -98,15 +114,16 @@ function Navbar() {
                             onClick = {() => dispatch(setIsCartOpen({}))}
                             sx = {{ color: "black" }}
                         >
-                            <ShoppingBagOutlined />
+                            <ShoppingBagOutlined style={{ fontSize: iconSize }} />
                         </IconButton>
                     </Badge>
+
                     <IconButton
                         className = "navbar-button"
                         // onClick = {() => navigate("/")}
-                        sx = {{ color: "black" }}
+                        sx = {{ color: "black", display: "none" }}
                     >
-                        <MenuOutlined />
+                        <MenuOutlined style={{ fontSize: iconSize }} />
                     </IconButton>
                 </Box>
             </Box>
