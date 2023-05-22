@@ -34,7 +34,7 @@ const Search = () => {
                 &filters[$or][0][name][$contains]=${searchTerm}
                 &filters[$or][1][shortDescription][$contains]=${searchTerm}
                 &filters[$or][2][longDescription][$contains]=${searchTerm}`,
-                { method: "GET" }
+                {method: "GET"}
             );
             const searchedItemsJson = await response.json();
             setSearchedItems(searchedItemsJson.data);
@@ -60,16 +60,16 @@ const Search = () => {
 
     const renderItems = () => {
         return searchedItems.map(item => (
-            <Item item={item} key={`${item.name}-${item.id}`} />
+            <Item item={item} key={`${item.name}-${item.id}`}/>
         ));
     };
 
     return (
         <Box>
             <Box width="80%" m="70px auto">
-                <SearchForm />
+                <SearchForm/>
                 <Box m="40px auto">
-                    <Typography variant="h5" style={{ padding: '10px', marginLeft: '12px' }}>
+                    <Typography variant="h5" style={{padding: '10px', marginLeft: '12px'}}>
                         {getResultMessage()}
                     </Typography>
                     <Box
@@ -85,7 +85,7 @@ const Search = () => {
                     </Box>
                 </Box>
             </Box>
-            <ShoppingList />
+            <ShoppingList/>
         </Box>
     );
 };

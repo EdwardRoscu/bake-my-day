@@ -5,7 +5,7 @@ export const useFetch = (url, processData = json => json) => {
 
     const fetchData = useCallback(async () => {
         if (data.length === 0) {
-            const response = await fetch(url, { method: 'GET' });
+            const response = await fetch(url, {method: 'GET'});
             const json = await response.json();
             setData(processData(json));
         }

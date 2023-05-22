@@ -17,33 +17,33 @@ import useFetchAndDispatchItems from "./hooks/useFetchAndDispatchItems";
 import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
-  
-  setupAxios();
-  useFetchAndDispatchItems();
 
-  return (
-      <Box className="box-container">
-        <BrowserRouter>
-          <Navbar />
-          <Box flex={1} paddingTop="50px">
-            <ScrollToTop />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="item/:itemId" element={<ItemDetails />} />
-              <Route path="checkout" element={<Checkout />} />
-              <Route path="checkout/success" element={<Confirmation />} />
-              <Route path="admin" element={<Admin />} />
-              <Route path="profile" element={<Profile />} />
-              <Route path="auth/login" element={<Login />} />
-              <Route path="auth/register" element={<Register />} />
-              <Route path="search" element={<Search />} />
-            </Routes>
-          </Box>
-          <CartMenu />
-          <Footer />
-        </BrowserRouter>
-      </Box>
-  );
+    setupAxios();
+    useFetchAndDispatchItems();
+
+    return (
+        <Box className="box-container">
+            <BrowserRouter>
+                <Navbar/>
+                <Box flex={1} paddingTop="50px">
+                    <ScrollToTop/>
+                    <Routes>
+                        <Route path="/" element={<Home/>}/>
+                        <Route path="item/:itemId" element={<ItemDetails/>}/>
+                        <Route path="checkout" element={<Checkout/>}/>
+                        <Route path="checkout/success" element={<Confirmation/>}/>
+                        <Route path="admin" element={<Admin/>}/>
+                        <Route path="profile" element={<Profile/>}/>
+                        <Route path="auth/login" element={<Login/>}/>
+                        <Route path="auth/register" element={<Register/>}/>
+                        <Route path="search" element={<Search/>}/>
+                    </Routes>
+                </Box>
+                <CartMenu/>
+                <Footer/>
+            </BrowserRouter>
+        </Box>
+    );
 }
 
 export default App;

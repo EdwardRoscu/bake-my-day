@@ -8,7 +8,7 @@ export const useFetchAndDispatchItems = () => {
     const getItems = useCallback(async () => {
         const items = await fetch(
             "http://localhost:4000/api/items?populate=image",
-            { method: "GET" }
+            {method: "GET"}
         );
         const itemsJson = await items.json();
         dispatch(setItems(itemsJson.data));

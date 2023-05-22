@@ -37,30 +37,30 @@ function Navbar() {
     return (
         <Box
             id="navbar"
-            display = "flex"
-            alignItems = "center"
-            width = "100%"
-            height = "50px"
-            backgroundColor = "rgba(255, 255, 255, 1)"
-            color = "black"
-            position ="fixed"
-            top = "0"
-            left = "0"
-            zIndex = "100"
-            boxShadow = "0px 2px 4px rgba(0, 0, 0, 0.1)"
+            display="flex"
+            alignItems="center"
+            width="100%"
+            height="50px"
+            backgroundColor="rgba(255, 255, 255, 1)"
+            color="black"
+            position="fixed"
+            top="0"
+            left="0"
+            zIndex="100"
+            boxShadow="0px 2px 4px rgba(0, 0, 0, 0.1)"
         >
             <Box
-                width = "80%"
-                margin = "auto"
-                display = "flex"
-                justifyContent = "space-between"
-                alignItems = "center"
+                width="80%"
+                margin="auto"
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
             >
                 <Box
-                    className = "navbar-button"
-                    onClick = {() => navigate("/")}
-                    sx = {{
-                        "&:hover": { cursor: "pointer" },
+                    className="navbar-button"
+                    onClick={() => navigate("/")}
+                    sx={{
+                        "&:hover": {cursor: "pointer"},
                         color: shades.secondary[500],
                         fontSize: "20px",
                         fontWeight: "bold"
@@ -69,37 +69,37 @@ function Navbar() {
                     BAKE MY DAY
                 </Box>
                 <Box
-                    display = "flex"
-                    justifyContent = "space-between"
-                    columnGap = "20px"
+                    display="flex"
+                    justifyContent="space-between"
+                    columnGap="20px"
                 >
                     <IconButton
-                        className = "navbar-button"
+                        className="navbar-button"
                         onClick={() => navigate("/search")}
-                        sx = {{ color: "black" }}
+                        sx={{color: "black"}}
                     >
-                        <SearchOutlined style={{ fontSize: iconSize }} />
+                        <SearchOutlined style={{fontSize: iconSize}}/>
                     </IconButton>
 
                     <Badge
                         overlap="circular"
-                        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                        badgeContent={isLoggedIn ? <CheckCircleOutline style={{ fontSize: 16, color: 'green' }} /> : null}
+                        anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
+                        badgeContent={isLoggedIn ? <CheckCircleOutline style={{fontSize: 16, color: 'green'}}/> : null}
                     >
                         <IconButton
-                            className = "navbar-button"
-                            onClick = {handleProfile}
-                            sx = {{ color: "black" }}
+                            className="navbar-button"
+                            onClick={handleProfile}
+                            sx={{color: "black"}}
                         >
-                            <PersonOutline style={{ fontSize: iconSize }} />
+                            <PersonOutline style={{fontSize: iconSize}}/>
                         </IconButton>
                     </Badge>
 
                     <Badge
-                        badgeContent = { cart.length }
-                        color = "secondary"
-                        invisible = { cart.length === 0 }
-                        sx = {{
+                        badgeContent={cart.length}
+                        color="secondary"
+                        invisible={cart.length === 0}
+                        sx={{
                             "& .MuiBadge-badge": {
                                 right: 5,
                                 top: 5,
@@ -110,20 +110,20 @@ function Navbar() {
                         }}
                     >
                         <IconButton
-                            className = "navbar-bag-button"
-                            onClick = {() => dispatch(setIsCartOpen({}))}
-                            sx = {{ color: "black" }}
+                            className="navbar-bag-button"
+                            onClick={() => dispatch(setIsCartOpen({}))}
+                            sx={{color: "black"}}
                         >
-                            <ShoppingBagOutlined style={{ fontSize: iconSize }} />
+                            <ShoppingBagOutlined style={{fontSize: iconSize}}/>
                         </IconButton>
                     </Badge>
 
                     <IconButton
-                        className = "navbar-button"
+                        className="navbar-button"
                         // onClick = {() => navigate("/")}
-                        sx = {{ color: "black", display: "none" }}
+                        sx={{color: "black", display: "none"}}
                     >
-                        <MenuOutlined style={{ fontSize: iconSize }} />
+                        <MenuOutlined style={{fontSize: iconSize}}/>
                     </IconButton>
                 </Box>
             </Box>

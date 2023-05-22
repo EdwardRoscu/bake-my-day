@@ -30,8 +30,8 @@ const Shipping = ({
                     control={
                         <Checkbox
                             defaultChecked
-                            value = {values.shippingAddress.isSameAddress}
-                            onChange = {() =>
+                            value={values.shippingAddress.isSameAddress}
+                            onChange={() =>
                                 setFieldValue(
                                     "shippingAddress.isSameAddress",
                                     !values.shippingAddress.isSameAddress

@@ -43,7 +43,7 @@ const ShoppingList = () => {
                 value={value}
                 onChange={handleChange}
                 centered
-                TabIndicatorProps={{ sx: { display: breakPoint ? "block" : "none" } }}
+                TabIndicatorProps={{sx: {display: breakPoint ? "block" : "none"}}}
                 sx={{
                     m: "25px",
                     "& .MuiTabs-flexContainer": {
@@ -55,10 +55,10 @@ const ShoppingList = () => {
                     },
                 }}
             >
-                <Tab label="ALL" value="all" sx={sharedTabStyles} />
-                <Tab label="CAKES" value="cakes" sx={sharedTabStyles} />
-                <Tab label="COOKIES" value="cookies" sx={sharedTabStyles} />
-                <Tab label="PIES" value="pies" sx={sharedTabStyles} />
+                <Tab label="ALL" value="all" sx={sharedTabStyles}/>
+                <Tab label="CAKES" value="cakes" sx={sharedTabStyles}/>
+                <Tab label="COOKIES" value="cookies" sx={sharedTabStyles}/>
+                <Tab label="PIES" value="pies" sx={sharedTabStyles}/>
             </Tabs>
             <Box
                 margin="0 auto"
@@ -71,19 +71,19 @@ const ShoppingList = () => {
             >
                 {value === "all" &&
                     items.map((item) => (
-                        <Item item={item} key={`${item.name}-${item.id}`} />
+                        <Item item={item} key={`${item.name}-${item.id}`}/>
                     ))}
                 {value === "cakes" &&
                     cakesItems.map((item) => (
-                        <Item item={item} key={`${item.name}-${item.id}`} />
+                        <Item item={item} key={`${item.name}-${item.id}`}/>
                     ))}
                 {value === "cookies" &&
                     cookiesItems.map((item) => (
-                        <Item item={item} key={`${item.name}-${item.id}`} />
+                        <Item item={item} key={`${item.name}-${item.id}`}/>
                     ))}
                 {value === "pies" &&
                     piesItems.map((item) => (
-                        <Item item={item} key={`${item.name}-${item.id}`} />
+                        <Item item={item} key={`${item.name}-${item.id}`}/>
                     ))}
             </Box>
         </Box>

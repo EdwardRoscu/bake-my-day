@@ -20,7 +20,7 @@ const Profile = () => {
 
     return (
         <Box display="flex">
-            <Sidebar view={view} onViewChange={handleViewChange} />
+            <Sidebar view={view} onViewChange={handleViewChange}/>
             <Box flexGrow={1} display="flex" flexDirection="column">
                 <Box display="flex" justifyContent="flex-end" mt={3} mr={3}>
                     <Button onClick={handleLogout} variant="contained" color="error">
@@ -28,8 +28,8 @@ const Profile = () => {
                     </Button>
                 </Box>
                 <Box width="80%" m="70px auto">
-                    {view === 'option1' && <Option1 />}
-                    {view === 'option2' && <Option2 />}
+                    {view === 'option1' && <Option1/>}
+                    {view === 'option2' && <Option2/>}
                 </Box>
             </Box>
         </Box>

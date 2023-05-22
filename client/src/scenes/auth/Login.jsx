@@ -91,12 +91,13 @@ const Login = () => {
                         variant="contained"
                         fullWidth
                         type="submit"
-                        style={{ marginTop: '1rem', fontSize: '12px' }}
+                        style={{marginTop: '1rem', fontSize: '12px'}}
                     >
                         Login
                     </Button>
-                    <Typography variant="body1" align="center" style={{ marginTop: '30px', fontSize: '14px' }}>
-                        Not a member? <Link to="/auth/register" style={{ textDecoration: 'none', color: 'blue' }}>Register</Link>
+                    <Typography variant="body1" align="center" style={{marginTop: '30px', fontSize: '14px'}}>
+                        Not a member? <Link to="/auth/register"
+                                            style={{textDecoration: 'none', color: 'blue'}}>Register</Link>
                     </Typography>
                 </form>
             </Container>

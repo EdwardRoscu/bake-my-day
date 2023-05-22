@@ -17,29 +17,29 @@ const Orders = () => {
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell sx={{ fontSize: '16px', width: '15%' }}>Order ID</TableCell>
-                        <TableCell sx={{ fontSize: '16px', width: '20%' }}>User Name</TableCell>
-                        <TableCell sx={{ fontSize: '16px', width: '25%' }}>Email</TableCell>
-                        <TableCell sx={{ fontSize: '16px', width: '20%' }}>Phone</TableCell>
-                        <TableCell sx={{ fontSize: '16px', width: '20%' }}>Products</TableCell>
+                        <TableCell sx={{fontSize: '16px', width: '15%'}}>Order ID</TableCell>
+                        <TableCell sx={{fontSize: '16px', width: '20%'}}>User Name</TableCell>
+                        <TableCell sx={{fontSize: '16px', width: '25%'}}>Email</TableCell>
+                        <TableCell sx={{fontSize: '16px', width: '20%'}}>Phone</TableCell>
+                        <TableCell sx={{fontSize: '16px', width: '20%'}}>Products</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {orders.map((order) => (
                         <TableRow key={order.id}>
-                            <TableCell component="th" scope="row" sx={{ fontSize: '14px' }}>
+                            <TableCell component="th" scope="row" sx={{fontSize: '14px'}}>
                                 {order.id}
                             </TableCell>
-                            <TableCell sx={{ fontSize: '14px' }}>
+                            <TableCell sx={{fontSize: '14px'}}>
                                 {order.attributes.userName}
                             </TableCell>
-                            <TableCell sx={{ fontSize: '14px' }}>
+                            <TableCell sx={{fontSize: '14px'}}>
                                 {order.attributes.email}
                             </TableCell>
-                            <TableCell sx={{ fontSize: '14px' }}>
+                            <TableCell sx={{fontSize: '14px'}}>
                                 {order.attributes.phone}
                             </TableCell>
-                            <TableCell sx={{ fontSize: '14px' }}>
+                            <TableCell sx={{fontSize: '14px'}}>
                                 {order.attributes.products.map((product) => (
                                     <div key={product.id}>
                                         {product.count} {getProductName(product.id)}

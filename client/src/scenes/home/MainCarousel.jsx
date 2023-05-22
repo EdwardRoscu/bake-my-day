@@ -40,12 +40,12 @@ const MainCarousel = () => {
                             color: "white",
                             zIndex: "20",
                             '&:hover': {
-                                '& svg': { fontSize: arrowSizeHover },
+                                '& svg': {fontSize: arrowSizeHover},
                                 transform: 'translateY(-50%)'
                             }
                         }}
                     >
-                        <NavigateBeforeIcon sx={{ fontSize: arrowSize }} />
+                        <NavigateBeforeIcon sx={{fontSize: arrowSize}}/>
                     </IconButton>
                 )}
                 renderArrowNext={onClickHandler => (
@@ -60,12 +60,12 @@ const MainCarousel = () => {
                             color: "white",
                             zIndex: "20",
                             '&:hover': {
-                                '& svg': { fontSize: arrowSizeHover },
+                                '& svg': {fontSize: arrowSizeHover},
                                 transform: 'translateY(-50%)'
                             }
                         }}
                     >
-                        <NavigateNextIcon sx={{ fontSize: arrowSize }} />
+                        <NavigateNextIcon sx={{fontSize: arrowSize}}/>
                     </IconButton>
                 )}
             >
@@ -103,7 +103,7 @@ const MainCarousel = () => {
                 <Typography
                     fontWeight="bold"
                     color={shades.secondary[300]}
-                    sx={{ textDecoration: "underline" }}
+                    sx={{textDecoration: "underline"}}
                 >
                     Discover More
                 </Typography>

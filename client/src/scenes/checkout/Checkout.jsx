@@ -22,7 +22,7 @@ const Checkout = () => {
         setActiveStep(activeStep + 1);
 
         //copies the billing address onto shipping address
-        if (isFirstStep && values.shippingAddress.isSameAddress){
+        if (isFirstStep && values.shippingAddress.isSameAddress) {
             actions.setFieldValue("shippingAddress", {
                 ...values.billingAddress,
                 isSameAddress: true,
@@ -43,14 +43,14 @@ const Checkout = () => {
             userName: [values.billingAddress.firstName, values.billingAddress.lastName].join(" "),
             email: values.email,
             phone: values.phoneNumber,
-            products: cart.map(({ id, count }) => ({ id, count })),
+            products: cart.map(({id, count}) => ({id, count})),
         };
 
         const response = await fetch(
             "http://localhost:4000/api/orders",
             {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(requestBody),
             }
         );
@@ -62,7 +62,7 @@ const Checkout = () => {
 
     return (
         <Box width="90%" m="100px auto">
-            <Stepper activeStep={activeStep} sx={{ m: "20px 0"}}>
+            <Stepper activeStep={activeStep} sx={{m: "20px 0"}}>
                 <Step>
                     <StepLabel>Billing</StepLabel>
                 </Step>
@@ -110,26 +110,26 @@ const Checkout = () => {
                                 {!isFirstStep && (
                                     <Button
                                         fullWidth
-                                        color = "primary"
-                                        variant = "contained"
-                                        sx = {{
+                                        color="primary"
+                                        variant="contained"
+                                        sx={{
                                             backgroundColor: shades.primary[200],
                                             boxShadow: "none",
                                             color: "white",
                                             borderRadius: 0,
                                             padding: "15px 40px"
                                         }}
-                                        onClick = {() => setActiveStep(activeStep - 1)}
+                                        onClick={() => setActiveStep(activeStep - 1)}
                                     >
                                         Back
                                     </Button>
                                 )}
                                 <Button
                                     fullWidth
-                                    type = "submit"
-                                    color = "primary"
-                                    variant = "contained"
-                                    sx = {{
+                                    type="submit"
+                                    color="primary"
+                                    variant="contained"
+                                    sx={{
                                         backgroundColor: shades.primary[400],
                                         boxShadow: "none",
                                         color: "white",

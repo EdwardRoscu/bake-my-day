@@ -12,7 +12,7 @@ const SearchForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if(searchTerm.length > 0){
+        if (searchTerm.length > 0) {
             navigate(`/search?query=${searchTerm}`);
             setSearchTerm('');
         }
@@ -23,7 +23,7 @@ const SearchForm = () => {
             <Typography variant="h5">
                 &#x1F370; Searching for the Best Dessert &#x1F369;
             </Typography>
-            <form onSubmit={handleSubmit} >
+            <form onSubmit={handleSubmit}>
                 <Input
                     fullWidth
                     onChange={handleSearchInput}
