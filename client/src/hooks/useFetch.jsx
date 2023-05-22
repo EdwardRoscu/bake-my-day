@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import {useCallback, useEffect, useState} from 'react';
 
 export const useFetch = (url, processData = json => json) => {
     const [data, setData] = useState([]);

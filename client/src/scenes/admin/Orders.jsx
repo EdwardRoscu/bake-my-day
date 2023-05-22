@@ -1,15 +1,7 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Paper,
-} from '@mui/material';
-import { useFetch } from '../../hooks/useFetch';
+import {useSelector} from 'react-redux';
+import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow,} from '@mui/material';
+import {useFetch} from '../../hooks/useFetch';
 
 const Orders = () => {
     const orders = useFetch('http://localhost:4000/api/orders', (json) => json.data);

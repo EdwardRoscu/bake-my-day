@@ -1,4 +1,4 @@
-import { Box, Typography, TextField } from "@mui/material";
+import {Box, TextField, Typography} from "@mui/material";
 
 const Payment = ({values, touched, errors, handleBlur, handleChange}) => {
   return (

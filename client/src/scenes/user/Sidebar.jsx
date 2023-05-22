@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Box, List, ListItemButton, ListItemText, Typography } from '@mui/material';
+import React, {useEffect, useState} from 'react';
+import {Box, List, ListItemButton, ListItemText, Typography} from '@mui/material';
 
 const Sidebar = ({ view, onViewChange }) => {
     const [user, setUser] = useState(null);

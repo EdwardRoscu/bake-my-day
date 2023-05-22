@@ -1,5 +1,5 @@
-import { useMediaQuery, TextField, Box  } from "@mui/material";
-import { getIn } from "formik";
+import {Box, TextField, useMediaQuery} from "@mui/material";
+import {getIn} from "formik";
 
 const AddressForm = ({
                          type,

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Box, Button } from '@mui/material';
+import React, {useState} from 'react';
+import {Box, Button} from '@mui/material';
 import Sidebar from './Sidebar';
 import Orders from './Orders';
 import Users from './Users';
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const Admin = () => {
     const navigate = useNavigate();

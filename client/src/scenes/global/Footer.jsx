@@ -1,7 +1,7 @@
-import { useTheme } from "@emotion/react";
-import { Box, Typography } from "@mui/material";
-import { shades } from "../../theme";
-import { useNavigate } from "react-router-dom";
+import {useTheme} from "@emotion/react";
+import {Box, Typography} from "@mui/material";
+import {shades} from "../../theme";
+import {useNavigate} from "react-router-dom";
 
 function Footer() {
   const navigate = useNavigate();

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Box, Button } from '@mui/material';
+import React, {useState} from 'react';
+import {Box, Button} from '@mui/material';
 import Sidebar from './Sidebar';
 import Option1 from './Option1';
 import Option2 from './Option2';
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const Profile = () => {
     const navigate = useNavigate();

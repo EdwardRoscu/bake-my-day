@@ -1,15 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Badge, Box, IconButton } from "@mui/material";
+import {useDispatch, useSelector} from "react-redux";
+import {Badge, Box, IconButton} from "@mui/material";
 import {
-    PersonOutline,
-    ShoppingBagOutlined,
+    CheckCircleOutline,
     MenuOutlined,
+    PersonOutline,
     SearchOutlined,
-    CheckCircleOutline
+    ShoppingBagOutlined
 } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
-import { shades } from "../../theme";
-import { setIsCartOpen } from "../../state";
+import {useNavigate} from "react-router-dom";
+import {shades} from "../../theme";
+import {setIsCartOpen} from "../../state";
 import axios from 'axios';
 
 function Navbar() {

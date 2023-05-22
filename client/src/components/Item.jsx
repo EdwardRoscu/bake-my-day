@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { IconButton, Box, Typography, useTheme, Button, CircularProgress } from "@mui/material";
+import {useEffect, useState} from "react";
+import {useDispatch} from "react-redux";
+import {Box, Button, CircularProgress, IconButton, Typography, useTheme} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { shades } from "../theme";
-import { addToCart } from "../state";
-import { useNavigate } from "react-router-dom";
+import {shades} from "../theme";
+import {addToCart} from "../state";
+import {useNavigate} from "react-router-dom";
 
 const Item = ({ item, width }) => {
   const navigate = useNavigate();

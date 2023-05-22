@@ -1,5 +1,5 @@
-import { Box } from "@mui/material";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {Box} from "@mui/material";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Checkout from "./scenes/checkout/Checkout";
 import Home from "./scenes/home/Home";
 import ItemDetails from "./scenes/itemDetails/ItemDetails";

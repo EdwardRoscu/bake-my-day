@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import Item from "../../components/Item";
-import { Typography } from "@mui/material";
+import {Typography} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 
 const ShoppingList = () => {
     const [value, setValue] = useState("all");

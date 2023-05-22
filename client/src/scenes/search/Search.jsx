@@ -1,11 +1,11 @@
-import { Box, Typography } from "@mui/material";
-import { useEffect, useState, useCallback } from "react";
+import {Box, Typography} from "@mui/material";
+import {useCallback, useEffect, useState} from "react";
 import Item from "../../components/Item";
 import SearchForm from "../../components/SearchForm";
-import { useLocation } from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import ShoppingList from "../home/ShoppingList";
-import { useDispatch } from "react-redux";
-import { setItems } from "../../state";
+import {useDispatch} from "react-redux";
+import {setItems} from "../../state";
 
 const Search = () => {
     const dispatch = useDispatch();

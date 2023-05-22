@@ -1,12 +1,12 @@
-import { useSelector } from 'react-redux';
-import { Box, Button, Stepper, Step, StepLabel } from "@mui/material";
-import { Formik } from "formik";
-import { useState } from 'react';
+import {useSelector} from 'react-redux';
+import {Box, Button, Step, StepLabel, Stepper} from "@mui/material";
+import {Formik} from "formik";
+import {useState} from 'react';
 import * as yup from "yup";
 import Shipping from "./Shipping";
 import Payment from "./Payment";
-import { shades } from "../../theme";
-import { loadStripe } from "@stripe/stripe-js";
+import {shades} from "../../theme";
+import {loadStripe} from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(
     "pk_test_51MzjdSIej0iRjubF6PB1YxSjvbdGdAy2oY4JL3OKJXohnPWj2Fb1umpSWF3XN8ARGiYpJd0mXtcoXJQjluHWgeSp00OD7BnGEp"

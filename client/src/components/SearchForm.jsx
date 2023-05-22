@@ -1,6 +1,6 @@
-import { Container, Input, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import {Container, Input, Typography} from "@mui/material";
+import {useNavigate} from "react-router-dom";
+import {useState} from "react";
 
 const SearchForm = () => {
     const navigate = useNavigate();

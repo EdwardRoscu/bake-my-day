@@ -1,6 +1,6 @@
-import { useEffect, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { setItems } from '../state';
+import {useCallback, useEffect} from 'react';
+import {useDispatch} from 'react-redux';
+import {setItems} from '../state';
 
 export const useFetchAndDispatchItems = () => {
     const dispatch = useDispatch();
