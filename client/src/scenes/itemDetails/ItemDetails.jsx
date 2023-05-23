@@ -8,11 +8,12 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import {shades} from "../../theme";
-import {addToCart} from "../../state";
-import {useDispatch} from "react-redux";
+import {addToCart, increaseCount} from "../../state";
+import {useDispatch, useSelector} from "react-redux";
 import {useFetch} from "../../hooks/useFetch";
 
 const ItemDetails = () => {
+    const itemsInCart = useSelector((state) => state.cart.cart);
     const dispatch = useDispatch();
     const {itemId} = useParams();
     const [value, setValue] = useState("description");
@@ -24,18 +25,27 @@ const ItemDetails = () => {
         setValue(newValue);
     };
 
-    async function getItem() {
-        const item = await fetch(
-            `http://localhost:4000/api/items/${itemId}?populate=image`,
-            {method: "GET"}
-        );
-        const itemJson = await item.json();
-        setItem(itemJson.data);
-    }
-
     useEffect(() => {
+        async function getItem() {
+            const item = await fetch(
+                `http://localhost:4000/api/items/${itemId}?populate=image`,
+                {method: "GET"}
+            );
+            const itemJson = await item.json();
+            setItem(itemJson.data);
+        }
+
         getItem();
-    }, [itemId]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [itemId]);
+
+    const handleAddToCart = () => {
+        const itemInCart = itemsInCart.find(cartItem => cartItem.id === item.id);
+        if (!itemInCart) {
+            dispatch(addToCart({item: {...item, count}}));
+        } else {
+            dispatch(increaseCount({id: item.id, count}));
+        }
+    }
 
     return (
         <Box width="80%" m="80px auto">
@@ -53,11 +63,6 @@ const ItemDetails = () => {
 
                 {/* ACTIONS */}
                 <Box flex="1 1 50%" mb="40px">
-                    <Box display="flex" justifyContent="space-between">
-                        <Box>Home/Item</Box>
-                        <Box>Prev Next</Box>
-                    </Box>
-
                     <Box m="65px 0 25px 0">
                         <Typography variant="h3">{item?.attributes?.name}</Typography>
                         <Typography>${item?.attributes?.price}</Typography>
@@ -90,7 +95,7 @@ const ItemDetails = () => {
                                 minWidth: "150px",
                                 padding: "10px 40px",
                             }}
-                            onClick={() => dispatch(addToCart({item: {...item, count}}))}
+                            onClick={handleAddToCart}
                         >
                             ADD TO CART
                         </Button>

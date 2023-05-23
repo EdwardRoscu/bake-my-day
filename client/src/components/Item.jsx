@@ -1,13 +1,14 @@
 import {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Box, Button, CircularProgress, IconButton, Typography, useTheme} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import {shades} from "../theme";
-import {addToCart} from "../state";
+import {addToCart, increaseCount} from "../state";
 import {useNavigate} from "react-router-dom";
 
 const Item = ({item, width}) => {
+    const itemsInCart = useSelector((state) => state.cart.cart);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [count, setCount] = useState(1);
@@ -42,6 +43,15 @@ const Item = ({item, width}) => {
             },
         },
     } = image;
+
+    const handleAddToCart = () => {
+        const itemInCart = itemsInCart.find(cartItem => cartItem.id === item.id);
+        if (!itemInCart) {
+            dispatch(addToCart({item: {...item, count}}));
+        } else {
+            dispatch(increaseCount({id: item.id, count}));
+        }
+    }
 
     return (
         <Box width={width}>
@@ -82,9 +92,7 @@ const Item = ({item, width}) => {
                             </IconButton>
                         </Box>
                         <Button
-                            onClick={() => {
-                                dispatch(addToCart({item: {...item, count}}));
-                            }}
+                            onClick={handleAddToCart}
                             sx={{backgroundColor: shades.primary[300], color: "white"}}
                         >
                             Add to Cart

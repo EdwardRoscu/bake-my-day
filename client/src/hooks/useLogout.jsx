@@ -10,5 +10,5 @@ export const useLogout = () => {
         navigate("/auth/login");
     };
 
-    return { logout };
+    return {logout};
 };
