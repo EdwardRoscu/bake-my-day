@@ -1,10 +1,10 @@
-const { describe, beforeAll, afterAll, it, expect } = require("@jest/globals");
+const {describe, beforeAll, afterAll, it, expect} = require("@jest/globals");
 const request = require("supertest");
 const {
   setupStrapi,
   stopStrapi,
 } = require("./../helpers/strapi");
-const { createUser, defaultData, mockUserData } = require("./factory");
+const {createUser, defaultData, mockUserData} = require("./factory");
 const nodemailerMock = require("nodemailer-mock");
 
 const fs = require("fs");

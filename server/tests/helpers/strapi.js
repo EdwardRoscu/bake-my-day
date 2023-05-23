@@ -27,7 +27,7 @@ const waitForServer = () =>
     if (listenSocket) {
       strapi.server.listen(listenSocket, onListen);
     } else {
-      const { host, port } = strapi.config.get("server");
+      const {host, port} = strapi.config.get("server");
       strapi.server.listen(port, host, onListen);
     }
 
@@ -94,7 +94,7 @@ const grantPrivilege = async (
 
   const role = await service.findOne(roleID);
 
-  _.set(role.permissions, path, { enabled, policy });
+  _.set(role.permissions, path, {enabled, policy});
 
   return service.updateRole(roleID, role);
 };
@@ -126,10 +126,10 @@ const updatePluginStore = async (
     name: pluginName,
   });
 
-  const oldValues = await pluginStore.get({ key });
+  const oldValues = await pluginStore.get({key});
   const newValue = Object.assign({}, oldValues, newValues);
 
-  return pluginStore.set({ key: key, value: newValue });
+  return pluginStore.set({key: key, value: newValue});
 };
 
 /**
@@ -145,7 +145,7 @@ const getPluginStore = (pluginName, key, environment = "") => {
     name: pluginName,
   });
 
-  return pluginStore.get({ key });
+  return pluginStore.get({key});
 };
 
 /**
