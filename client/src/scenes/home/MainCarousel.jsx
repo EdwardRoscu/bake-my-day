@@ -106,7 +106,7 @@ const MainCarousel = () => {
                     fontSize: "20px",
                     fontWeight: "bold"
                 }}
-                onClick={() => navigate("/search")}
+                onClick={() => navigate("/search?query=cake")}
             >
                 <Typography color={shades.secondary[200]}>New Products</Typography>
                 <Typography variant="h1">It's Cake o'clock!</Typography>

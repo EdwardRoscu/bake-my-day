@@ -33,7 +33,8 @@ const Search = () => {
                 `http://localhost:4000/api/items?populate=*
                 &filters[$or][0][name][$contains]=${searchTerm}
                 &filters[$or][1][shortDescription][$contains]=${searchTerm}
-                &filters[$or][2][longDescription][$contains]=${searchTerm}`,
+                &filters[$or][2][longDescription][$contains]=${searchTerm}
+                &filters[$or][3][category][$contains]=${searchTerm}`,
                 {method: "GET"}
             );
             const searchedItemsJson = await response.json();
