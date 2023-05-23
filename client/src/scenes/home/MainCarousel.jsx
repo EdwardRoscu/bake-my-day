@@ -3,7 +3,9 @@ import {Carousel} from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import {shades} from "../../theme";
+
+import { shades } from "../../theme";
+import { useNavigate } from "react-router-dom";
 
 const importAll = (r) =>
     r.keys().reduce((acc, item) => {
@@ -16,6 +18,7 @@ export const heroTextureImports = importAll(
 );
 
 const MainCarousel = () => {
+    const navigate = useNavigate();
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const arrowSize = 50;
     const arrowSizeHover = 60;
@@ -97,9 +100,16 @@ const MainCarousel = () => {
                 margin={isNonMobile ? undefined : "0 auto"}
                 maxWidth={isNonMobile ? undefined : "240px"}
                 zIndex="10"
+                sx = {{
+                    "&:hover": { cursor: "pointer" },
+                    color: shades.secondary[500],
+                    fontSize: "20px",
+                    fontWeight: "bold"
+                }}
+                onClick = {() => navigate("/search")}
             >
                 <Typography color={shades.secondary[200]}>New Products</Typography>
-                <Typography variant="h1">Spring Sale</Typography>
+                <Typography variant="h1">It's Cake o'clock!</Typography>
                 <Typography
                     fontWeight="bold"
                     color={shades.secondary[300]}
