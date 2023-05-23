@@ -1,7 +1,7 @@
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
 import {useFetch} from "../../hooks/useFetch";
 
-const Users = () => {
+const AllUsers = () => {
     const users = useFetch("http://localhost:4000/api/users");
 
     return (
@@ -34,4 +34,4 @@ const Users = () => {
     );
 };
 
-export default Users;
+export default AllUsers;

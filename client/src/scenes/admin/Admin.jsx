@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {Box, Button} from '@mui/material';
 import Sidebar from './Sidebar';
-import Orders from './Orders';
-import Users from './Users';
+import AllOrders from './AllOrders';
+import AllUsers from './AllUsers';
 import {useNavigate} from "react-router-dom";
 
 const Admin = () => {
@@ -28,8 +28,8 @@ const Admin = () => {
                     </Button>
                 </Box>
                 <Box width="80%" m="70px auto">
-                    {view === 'orders' && <Orders/>}
-                    {view === 'users' && <Users/>}
+                    {view === 'orders' && <AllOrders/>}
+                    {view === 'users' && <AllUsers/>}
                 </Box>
             </Box>
         </Box>
