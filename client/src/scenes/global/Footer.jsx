@@ -9,9 +9,9 @@ function Footer() {
         palette: {neutral},
     } = useTheme();
     return (
-        <Box padding="40px 0" backgroundColor={neutral.light}>
+        <Box padding="40px" backgroundColor={neutral.light}>
             <Box
-                width="85%"
+                width="90%"
                 margin="auto"
                 display="flex"
                 justifyContent="space-between"
@@ -33,25 +33,21 @@ function Footer() {
                     >
                         BAKE MY DAY
                     </Box>
-                    <div>Selling baked sweets since 2015</div>
+                    <Typography>
+                        Selling baked sweets since 2015
+                    </Typography>
                 </Box>
 
                 <Box>
                     <Typography variant="h4" fontWeight="bold" mb="30px">
                         About Us
                     </Typography>
-                    <Typography>We are a small business whose primary goal</Typography>
                     <Typography>
-                        is to fulfill the wishes of our customers in terms of fresh
-                        confectionery products,
-                    </Typography>
-                    <Typography mb="10px">
+                        We are a small business whose primary goal<br/>
+                        is to fulfill the wishes of our customers<br/>
+                        in terms of fresh confectionery products,<br/>
                         both standard and customized.
                     </Typography>
-                    <Typography>We were born in 2015 and have been with</Typography>
-                    <Typography>you at the most important events of your</Typography>
-                    <Typography mb="10px">life and we will continue to do so.</Typography>
-                    <Typography>Thank you for being with us!</Typography>
                 </Box>
 
                 <Box>
