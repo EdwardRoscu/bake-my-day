@@ -18,7 +18,7 @@ const Orders = () => {
                 <TableHead>
                     <TableRow>
                         <TableCell sx={{fontSize: '16px', width: '15%'}}>Order ID</TableCell>
-                        <TableCell sx={{fontSize: '16px', width: '20%'}}>User Name</TableCell>
+                        <TableCell sx={{fontSize: '16px', width: '20%'}}>Name</TableCell>
                         <TableCell sx={{fontSize: '16px', width: '25%'}}>Email</TableCell>
                         <TableCell sx={{fontSize: '16px', width: '20%'}}>Phone</TableCell>
                         <TableCell sx={{fontSize: '16px', width: '20%'}}>Products</TableCell>
