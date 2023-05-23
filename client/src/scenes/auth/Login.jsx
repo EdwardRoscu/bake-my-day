@@ -33,19 +33,17 @@ const Login = () => {
                 });
 
                 const jwt = response.data.jwt;
-                if (jwt) {
-                    localStorage.setItem('jwt', jwt);
-                }
-
                 const user = response.data.user;
-                if (user) {
+                if (jwt && user) {
+                    localStorage.setItem('jwt', jwt);
                     localStorage.setItem('user', JSON.stringify(user));
+                    localStorage.setItem('userId', user.id);
                 }
 
                 if (response.data.user["isAdmin"]) {
                     navigate("/admin");
                 } else {
-                    navigate("/profile");
+                    navigate("/");
                 }
             } catch (error) {
                 setErrorMessage(error.response.data.error.message || 'An error occurred.');

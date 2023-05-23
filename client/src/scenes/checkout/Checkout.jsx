@@ -13,6 +13,7 @@ const stripePromise = loadStripe(
 );
 
 const Checkout = () => {
+    const userId = localStorage.getItem('userId');
     const [activeStep, setActiveStep] = useState(0);
     const cart = useSelector((state) => state.cart.cart);
     const isFirstStep = activeStep === 0;
@@ -40,6 +41,7 @@ const Checkout = () => {
         const stripe = await stripePromise;
 
         const requestBody = {
+            userId: userId,
             userName: [values.billingAddress.firstName, values.billingAddress.lastName].join(" "),
             email: values.email,
             phone: values.phoneNumber,
