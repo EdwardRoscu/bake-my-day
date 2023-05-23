@@ -3,19 +3,14 @@ import {Box, Button} from '@mui/material';
 import Sidebar from './Sidebar';
 import AllOrders from './AllOrders';
 import AllUsers from './AllUsers';
-import {useNavigate} from "react-router-dom";
+import {useLogout} from '../../hooks/useLogout';
 
 const Admin = () => {
-    const navigate = useNavigate();
     const [view, setView] = useState('orders');
+    const {logout} = useLogout();
 
     function handleViewChange(viewName) {
         setView(viewName);
-    }
-
-    function handleLogout() {
-        localStorage.removeItem('jwt');
-        navigate("/auth/login");
     }
 
     return (
@@ -23,7 +18,7 @@ const Admin = () => {
             <Sidebar view={view} onViewChange={handleViewChange}/>
             <Box flexGrow={1} display="flex" flexDirection="column">
                 <Box display="flex" justifyContent="flex-end" mt={3} mr={3}>
-                    <Button onClick={handleLogout} variant="contained" color="error">
+                    <Button onClick={logout} variant="contained" color="error">
                         Logout
                     </Button>
                 </Box>
