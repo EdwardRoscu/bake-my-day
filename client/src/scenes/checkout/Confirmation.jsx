@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import {Box} from "@mui/material";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 

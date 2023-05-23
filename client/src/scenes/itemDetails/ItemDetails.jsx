@@ -1,20 +1,20 @@
-import { Box, Button, IconButton, Typography } from "@mui/material";
+import {Box, Button, IconButton, Typography} from "@mui/material";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import {useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
 import Item from "../../components/Item";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { shades } from "../../theme";
-import { addToCart } from "../../state";
-import { useDispatch } from "react-redux";
+import {shades} from "../../theme";
+import {addToCart} from "../../state";
+import {useDispatch} from "react-redux";
 import {useFetch} from "../../hooks/useFetch";
 
 const ItemDetails = () => {
     const dispatch = useDispatch();
-    const { itemId } = useParams();
+    const {itemId} = useParams();
     const [value, setValue] = useState("description");
     const [count, setCount] = useState(1);
     const [item, setItem] = useState(null);
@@ -27,7 +27,7 @@ const ItemDetails = () => {
     async function getItem() {
         const item = await fetch(
             `http://localhost:4000/api/items/${itemId}?populate=image`,
-            { method: "GET" }
+            {method: "GET"}
         );
         const itemJson = await item.json();
         setItem(itemJson.data);
@@ -47,7 +47,7 @@ const ItemDetails = () => {
                         width="100%"
                         height="100%"
                         src={`http://localhost:4000${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
-                        style={{ objectFit: "contain" }}
+                        style={{objectFit: "contain"}}
                     />
                 </Box>
 
@@ -61,7 +61,7 @@ const ItemDetails = () => {
                     <Box m="65px 0 25px 0">
                         <Typography variant="h3">{item?.attributes?.name}</Typography>
                         <Typography>${item?.attributes?.price}</Typography>
-                        <Typography sx={{ mt: "20px" }}>
+                        <Typography sx={{mt: "20px"}}>
                             {item?.attributes?.longDescription}
                         </Typography>
                     </Box>
@@ -75,11 +75,11 @@ const ItemDetails = () => {
                             p="2px 5px"
                         >
                             <IconButton onClick={() => setCount(Math.max(count - 1, 1))}>
-                                <RemoveIcon />
+                                <RemoveIcon/>
                             </IconButton>
-                            <Typography sx={{ p: "0 5px" }}>{count}</Typography>
+                            <Typography sx={{p: "0 5px"}}>{count}</Typography>
                             <IconButton onClick={() => setCount(Math.min(count + 1, 50))}>
-                                <AddIcon />
+                                <AddIcon/>
                             </IconButton>
                         </Box>
                         <Button
@@ -90,15 +90,15 @@ const ItemDetails = () => {
                                 minWidth: "150px",
                                 padding: "10px 40px",
                             }}
-                            onClick={() => dispatch(addToCart({ item: { ...item, count } }))}
+                            onClick={() => dispatch(addToCart({item: {...item, count}}))}
                         >
                             ADD TO CART
                         </Button>
                     </Box>
                     <Box>
                         <Box m="20px 0 5px 0" display="flex">
-                            <FavoriteBorderOutlinedIcon />
-                            <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>
+                            <FavoriteBorderOutlinedIcon/>
+                            <Typography sx={{ml: "5px"}}>ADD TO WISHLIST</Typography>
                         </Box>
                         <Typography>CATEGORIES: {item?.attributes?.category}</Typography>
                     </Box>
@@ -108,8 +108,8 @@ const ItemDetails = () => {
             {/* INFORMATION */}
             <Box m="20px 0">
                 <Tabs value={value} onChange={handleChange}>
-                    <Tab label="DESCRIPTION" value="description" />
-                    <Tab label="REVIEWS" value="reviews" />
+                    <Tab label="DESCRIPTION" value="description"/>
+                    <Tab label="REVIEWS" value="reviews"/>
                 </Tabs>
             </Box>
             <Box display="flex" flexWrap="wrap" gap="15px">
@@ -132,7 +132,7 @@ const ItemDetails = () => {
                     justifyContent="space-between"
                 >
                     {items.slice(0, 4).map((item, i) => (
-                        <Item key={`${item.name}-${i}`} item={item} />
+                        <Item key={`${item.name}-${i}`} item={item}/>
                     ))}
                 </Box>
             </Box>

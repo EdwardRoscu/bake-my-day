@@ -1,4 +1,4 @@
-import { Box, Checkbox, FormControlLabel, Typography } from "@mui/material";
+import {Box, Checkbox, FormControlLabel, Typography} from "@mui/material";
 import AddressForm from "./AddressForm";
 
 const Shipping = ({
@@ -30,8 +30,8 @@ const Shipping = ({
                     control={
                         <Checkbox
                             defaultChecked
-                            value = {values.shippingAddress.isSameAddress}
-                            onChange = {() =>
+                            value={values.shippingAddress.isSameAddress}
+                            onChange={() =>
                                 setFieldValue(
                                     "shippingAddress.isSameAddress",
                                     !values.shippingAddress.isSameAddress

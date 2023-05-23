@@ -1,8 +1,9 @@
-import { Box, Typography, IconButton, useMediaQuery } from "@mui/material";
-import { Carousel } from "react-responsive-carousel";
+import {Box, IconButton, Typography, useMediaQuery} from "@mui/material";
+import {Carousel} from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+
 import { shades } from "../../theme";
 import { useNavigate } from "react-router-dom";
 
@@ -42,12 +43,12 @@ const MainCarousel = () => {
                             color: "white",
                             zIndex: "20",
                             '&:hover': {
-                                '& svg': { fontSize: arrowSizeHover },
+                                '& svg': {fontSize: arrowSizeHover},
                                 transform: 'translateY(-50%)'
                             }
                         }}
                     >
-                        <NavigateBeforeIcon sx={{ fontSize: arrowSize }} />
+                        <NavigateBeforeIcon sx={{fontSize: arrowSize}}/>
                     </IconButton>
                 )}
                 renderArrowNext={onClickHandler => (
@@ -62,12 +63,12 @@ const MainCarousel = () => {
                             color: "white",
                             zIndex: "20",
                             '&:hover': {
-                                '& svg': { fontSize: arrowSizeHover },
+                                '& svg': {fontSize: arrowSizeHover},
                                 transform: 'translateY(-50%)'
                             }
                         }}
                     >
-                        <NavigateNextIcon sx={{ fontSize: arrowSize }} />
+                        <NavigateNextIcon sx={{fontSize: arrowSize}}/>
                     </IconButton>
                 )}
             >
@@ -112,7 +113,7 @@ const MainCarousel = () => {
                 <Typography
                     fontWeight="bold"
                     color={shades.secondary[300]}
-                    sx={{ textDecoration: "underline" }}
+                    sx={{textDecoration: "underline"}}
                 >
                     Discover More
                 </Typography>

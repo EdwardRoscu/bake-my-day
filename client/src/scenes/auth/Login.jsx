@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Box, Button, TextField, Container, Typography } from '@mui/material';
-import { useFormik } from 'formik';
+import React, {useState} from 'react';
+import {Box, Button, Container, TextField, Typography} from '@mui/material';
+import {useFormik} from 'formik';
 import * as yup from 'yup';
-import { Link, useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
 
 const validationSchema = yup.object({
@@ -18,6 +18,7 @@ const validationSchema = yup.object({
 const Login = () => {
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
+
     const formik = useFormik({
         initialValues: {
             identifier: '',
@@ -34,6 +35,11 @@ const Login = () => {
                 const jwt = response.data.jwt;
                 if (jwt) {
                     localStorage.setItem('jwt', jwt);
+                }
+
+                const user = response.data.user;
+                if (user) {
+                    localStorage.setItem('user', JSON.stringify(user));
                 }
 
                 if (response.data.user["isAdmin"]) {
@@ -85,12 +91,13 @@ const Login = () => {
                         variant="contained"
                         fullWidth
                         type="submit"
-                        style={{ marginTop: '1rem', fontSize: '12px' }}
+                        style={{marginTop: '1rem', fontSize: '12px'}}
                     >
                         Login
                     </Button>
-                    <Typography variant="body1" align="center" style={{ marginTop: '30px', fontSize: '14px' }}>
-                        Not a member? <Link to="/auth/register" style={{ textDecoration: 'none', color: 'blue' }}>Register</Link>
+                    <Typography variant="body1" align="center" style={{marginTop: '30px', fontSize: '14px'}}>
+                        Not a member? <Link to="/auth/register"
+                                            style={{textDecoration: 'none', color: 'blue'}}>Register</Link>
                     </Typography>
                 </form>
             </Container>

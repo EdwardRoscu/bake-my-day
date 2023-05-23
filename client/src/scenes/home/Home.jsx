@@ -4,8 +4,8 @@ import ShoppingList from "./ShoppingList";
 const Home = () => {
     return (
         <div>
-            <MainCarousel />
-            <ShoppingList />
+            <MainCarousel/>
+            <ShoppingList/>
         </div>
     );
 }

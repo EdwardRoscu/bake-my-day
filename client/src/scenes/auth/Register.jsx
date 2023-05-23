@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Box, Button, TextField, Container, Typography } from '@mui/material';
-import { useFormik } from 'formik';
+import React, {useState} from 'react';
+import {Box, Button, Container, TextField, Typography} from '@mui/material';
+import {useFormik} from 'formik';
 import * as yup from 'yup';
-import { Link, useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
 
 const validationSchema = yup.object({
@@ -113,12 +113,13 @@ const Register = () => {
                         variant="contained"
                         fullWidth
                         type="submit"
-                        style={{ marginTop: '1rem', fontSize: '12px' }}
+                        style={{marginTop: '1rem', fontSize: '12px'}}
                     >
                         Register
                     </Button>
-                    <Typography variant="body1" align="center" style={{ marginTop: '30px', fontSize: '14px' }}>
-                        Already have an account? <Link to="/auth/login" style={{ textDecoration: 'none', color: 'blue' }}>Login</Link>
+                    <Typography variant="body1" align="center" style={{marginTop: '30px', fontSize: '14px'}}>
+                        Already have an account? <Link to="/auth/login"
+                                                       style={{textDecoration: 'none', color: 'blue'}}>Login</Link>
                     </Typography>
                 </form>
             </Container>

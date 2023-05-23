@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Box, Button } from '@mui/material';
+import React, {useState} from 'react';
+import {Box, Button} from '@mui/material';
 import Sidebar from './Sidebar';
 import Orders from './Orders';
 import Users from './Users';
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const Admin = () => {
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ const Admin = () => {
 
     return (
         <Box display="flex">
-            <Sidebar view={view} onViewChange={handleViewChange} />
+            <Sidebar view={view} onViewChange={handleViewChange}/>
             <Box flexGrow={1} display="flex" flexDirection="column">
                 <Box display="flex" justifyContent="flex-end" mt={3} mr={3}>
                     <Button onClick={handleLogout} variant="contained" color="error">
@@ -28,8 +28,8 @@ const Admin = () => {
                     </Button>
                 </Box>
                 <Box width="80%" m="70px auto">
-                    {view === 'orders' && <Orders />}
-                    {view === 'users' && <Users />}
+                    {view === 'orders' && <Orders/>}
+                    {view === 'users' && <Users/>}
                 </Box>
             </Box>
         </Box>

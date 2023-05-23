@@ -1,11 +1,11 @@
-import { Box, Typography } from "@mui/material";
-import { useEffect, useState, useCallback } from "react";
+import {Box, Typography} from "@mui/material";
+import {useCallback, useEffect, useState} from "react";
 import Item from "../../components/Item";
 import SearchForm from "../../components/SearchForm";
-import { useLocation } from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import ShoppingList from "../home/ShoppingList";
-import { useDispatch } from "react-redux";
-import { setItems } from "../../state";
+import {useDispatch} from "react-redux";
+import {setItems} from "../../state";
 
 const Search = () => {
     const dispatch = useDispatch();
@@ -30,8 +30,11 @@ const Search = () => {
     const getSearchedItems = useCallback(async () => {
         try {
             const response = await fetch(
-                `http://localhost:4000/api/items?populate=*&filters[name][$contains]=${searchTerm}`,
-                { method: "GET" }
+                `http://localhost:4000/api/items?populate=*
+                &filters[$or][0][name][$contains]=${searchTerm}
+                &filters[$or][1][shortDescription][$contains]=${searchTerm}
+                &filters[$or][2][longDescription][$contains]=${searchTerm}`,
+                {method: "GET"}
             );
             const searchedItemsJson = await response.json();
             setSearchedItems(searchedItemsJson.data);
@@ -57,16 +60,16 @@ const Search = () => {
 
     const renderItems = () => {
         return searchedItems.map(item => (
-            <Item item={item} key={`${item.name}-${item.id}`} />
+            <Item item={item} key={`${item.name}-${item.id}`}/>
         ));
     };
 
     return (
         <Box>
             <Box width="80%" m="70px auto">
-                <SearchForm />
+                <SearchForm/>
                 <Box m="40px auto">
-                    <Typography variant="h5" style={{ padding: '10px', marginLeft: '12px' }}>
+                    <Typography variant="h5" style={{padding: '10px', marginLeft: '12px'}}>
                         {getResultMessage()}
                     </Typography>
                     <Box
@@ -76,13 +79,13 @@ const Search = () => {
                         justifyContent="space-around"
                         rowGap="20px"
                         columnGap="1.5%"
-                        minHeight="400px"
+                        minHeight="100px"
                     >
                         {renderItems()}
                     </Box>
                 </Box>
             </Box>
-            <ShoppingList />
+            <ShoppingList/>
         </Box>
     );
 };
