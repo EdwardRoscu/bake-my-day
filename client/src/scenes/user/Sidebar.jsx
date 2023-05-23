@@ -18,14 +18,14 @@ const Sidebar = ({view, onViewChange}) => {
                     <Typography variant="h5">{user.username}</Typography>
                 </Box>}
             <List>
-                <ListItemButton selected={view === 'option1'} onClick={() => onViewChange('option1')}
+                <ListItemButton selected={view === 'orders'} onClick={() => onViewChange('orders')}
                                 style={{margin: '20px 0'}}>
-                    <ListItemText primary="Option 1" primaryTypographyProps={{style: {fontSize: '18px'}}}/>
+                    <ListItemText primary="My Orders" primaryTypographyProps={{style: {fontSize: '18px'}}}/>
                 </ListItemButton>
-                <ListItemButton selected={view === 'option2'} onClick={() => onViewChange('option2')}
-                                style={{margin: '20px 0'}}>
-                    <ListItemText primary="Option 2" primaryTypographyProps={{style: {fontSize: '18px'}}}/>
-                </ListItemButton>
+                {/*<ListItemButton selected={view === 'option2'} onClick={() => onViewChange('option2')}*/}
+                {/*                style={{margin: '20px 0'}}>*/}
+                {/*    <ListItemText primary="Option 2" primaryTypographyProps={{style: {fontSize: '18px'}}}/>*/}
+                {/*</ListItemButton>*/}
             </List>
         </Box>
     );

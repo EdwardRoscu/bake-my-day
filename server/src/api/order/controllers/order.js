@@ -9,10 +9,13 @@ const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::order.order", ({ strapi }) => ({
   async create(ctx) {
-    const { products, userName, email, phone } = ctx.request.body;
+    const { userId, products, userName, email, phone } = ctx.request.body;
+
+    let lineItems;
+
+    // Attempt to retrieve item information
     try {
-      // retrieve item information
-      const lineItems = await Promise.all(
+      lineItems = await Promise.all(
         products.map(async (product) => {
           const item = await strapi
             .service("api::item.item")
@@ -30,9 +33,16 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
           };
         })
       );
+    } catch (error) {
+      ctx.response.status = 500;
+      return { error: { message: "Error retrieving items: " + error.message } };
+    }
 
-      // create a stripe session
-      const session = await stripe.checkout.sessions.create({
+    let session;
+
+    // Attempt to create a stripe session
+    try {
+      session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
         customer_email: email,
         mode: "payment",
@@ -40,16 +50,30 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
         cancel_url: "http://localhost:3000",
         line_items: lineItems,
       });
-
-      // create the item
-      await strapi
-        .service("api::order.order")
-        .create({ data: { userName, products, stripeSessionId: session.id, email, phone } });
-
-      return { id: session.id };
     } catch (error) {
       ctx.response.status = 500;
-      return { error: { message: "There was a problem creating the charge" } };
+      return { error: { message: "Error creating stripe session: " + error.message } };
     }
+
+    // Attempt to create the order
+    try {
+      await strapi
+        .service("api::order.order")
+        .create({
+          data: {
+            userName,
+            products,
+            stripeSessionId: session.id,
+            email,
+            phone,
+            userId
+          }
+        });
+    } catch (error) {
+      ctx.response.status = 500;
+      return { error: { message: "Error creating order: " + error.message } };
+    }
+
+    return { id: session.id };
   },
 }));

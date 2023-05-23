@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Box, Button} from '@mui/material';
 import Sidebar from './Sidebar';
-import Option1 from './Option1';
+import MyOrders from './MyOrders';
 import Option2 from './Option2';
 import {useNavigate} from "react-router-dom";
 
@@ -28,7 +28,7 @@ const Profile = () => {
                     </Button>
                 </Box>
                 <Box width="80%" m="70px auto">
-                    {view === 'option1' && <Option1/>}
+                    {view === 'orders' && <MyOrders/>}
                     {view === 'option2' && <Option2/>}
                 </Box>
             </Box>

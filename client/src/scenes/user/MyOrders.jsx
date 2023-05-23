@@ -3,8 +3,12 @@ import {useSelector} from 'react-redux';
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow,} from '@mui/material';
 import {useFetch} from '../../hooks/useFetch';
 
-const Orders = () => {
-    const orders = useFetch('http://localhost:4000/api/orders', (json) => json.data);
+const MyOrders = () => {
+    const userId = localStorage.getItem('userId');
+    const allOrders = useFetch('http://localhost:4000/api/orders', (json) => json.data);
+    const orders = allOrders.filter(
+        (allOrders) => allOrders.attributes.userId === userId
+    );
     const items = useSelector((state) => state.cart.items);
 
     function getProductName(productId) {
@@ -54,4 +58,4 @@ const Orders = () => {
     );
 };
 
-export default Orders;
+export default MyOrders;
