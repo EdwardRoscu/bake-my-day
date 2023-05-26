@@ -90,6 +90,7 @@ const Login = () => {
                         fullWidth
                         type="submit"
                         style={{marginTop: '1rem', fontSize: '12px'}}
+                        data-testid="login-button"
                     >
                         Login
                     </Button>

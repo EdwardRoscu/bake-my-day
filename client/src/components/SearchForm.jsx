@@ -23,7 +23,7 @@ const SearchForm = () => {
             <Typography variant="h5">
                 &#x1F370; Searching for the Best Dessert &#x1F369;
             </Typography>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} data-testid="search-form-submit" type="submit">
                 <Input
                     fullWidth
                     onChange={handleSearchInput}

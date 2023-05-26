@@ -61,6 +61,7 @@ const CartMenu = () => {
             left="0"
             top="0"
             overflow="auto"
+            data-testid="cart-menu"
         >
             <Box
                 paddingTop="60px"
@@ -77,8 +78,8 @@ const CartMenu = () => {
                         <Typography variant="h3">
                             SHOPPING BAG ({cart.length})
                         </Typography>
-                        <IconButton onClick={() => dispatch(setIsCartOpen({}))}>
-                            <CloseIcon/>
+                        <IconButton onClick={() => dispatch(setIsCartOpen({}))} data-testid="close-button">
+                            <CloseIcon />
                         </IconButton>
                     </FlexBox>
                     <Box>
@@ -103,11 +104,11 @@ const CartMenu = () => {
                                                     dispatch(removeFromCart({id: item.id}))
                                                 }
                                             >
-                                                <CloseIcon/>
+                                                <CloseIcon />
                                             </IconButton>
                                         </FlexBox>
                                         <Typography>{item.attributes.shortDescription}</Typography>
-                                        <FlexBox m="15px 0">
+                                        <FlexBox m="15px 0" data-testid="price-id">
                                             <Box
                                                 display="flex"
                                                 alignItems="center"
