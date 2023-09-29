@@ -1,7 +1,7 @@
 import {Box, Button, IconButton, Typography} from "@mui/material";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import Item from "../../components/Item";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -11,8 +11,10 @@ import {shades} from "../../theme";
 import {addToCart, increaseCount} from "../../state";
 import {useDispatch, useSelector} from "react-redux";
 import {useFetch} from "../../hooks/useFetch";
+import axios from "axios";
 
 const ItemDetails = () => {
+    const navigate = useNavigate();
     const itemsInCart = useSelector((state) => state.cart.cart);
     const dispatch = useDispatch();
     const {itemId} = useParams();
@@ -20,6 +22,32 @@ const ItemDetails = () => {
     const [count, setCount] = useState(1);
     const [item, setItem] = useState(null);
     const items = useFetch("http://localhost:4000/api/items?populate=image", json => json.data);
+
+    const [isAdmin, setIsAdmin] = useState(false);  // State to track admin status
+
+    useEffect(() => {
+        async function checkAdminStatus() {
+            try {
+                const response = await axios.get('http://localhost:4000/api/users/me');
+                setIsAdmin(response.data.isAdmin);
+            } catch (error) {
+                // Handle error fetching admin status (e.g., user not logged in)
+                setIsAdmin(false);  // Assuming non-admin for simplicity
+            }
+        }
+
+        checkAdminStatus();
+    }, []);
+
+    const handleDelete = async (itemId) => {
+        try {
+            await axios.delete(`http://localhost:4000/api/items/${itemId}`);
+            navigate('/');
+            window.location.reload();
+        } catch (error) {
+            console.error('Error deleting item:', error);
+        }
+    };
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -48,10 +76,10 @@ const ItemDetails = () => {
     }
 
     return (
-        <Box width="80%" m="80px auto">
-            <Box display="flex" flexWrap="wrap" columnGap="40px">
+        <Box width="85%" m="60px auto">
+            <Box display="flex" flexWrap="wrap" columnGap="60px">
                 {/* IMAGES */}
-                <Box flex="1 1 40%" mb="40px">
+                <Box flex="1 1 40%" mb="30px">
                     <img
                         alt={item?.name}
                         width="100%"
@@ -62,7 +90,20 @@ const ItemDetails = () => {
                 </Box>
 
                 {/* ACTIONS */}
-                <Box flex="1 1 50%" mb="40px">
+                <Box flex="1 1 50%" mb="30px">
+                    {/* DELETE BUTTON - Visible to Admins only */}
+                    <Box sx={{textAlign: 'right', paddingTop: '10px'}}>
+                        {isAdmin && (
+                            <Button
+                                variant="contained"
+                                color="error"
+                                onClick={() => handleDelete(item.id)}
+                            >
+                                Delete Item
+                            </Button>
+                        )}
+                    </Box>
+
                     <Box m="65px 0 25px 0">
                         <Typography variant="h3">{item?.attributes?.name}</Typography>
                         <Typography>${item?.attributes?.price}</Typography>

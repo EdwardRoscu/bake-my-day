@@ -15,12 +15,12 @@ const AllOrders = () => {
         return item && item.attributes && item.attributes.name ? item.attributes.name : 'N/A';
     }
 
-    const handleDelete = async (userId) => {
+    const handleDelete = async (orderId) => {
         try {
-            await axios.delete(`http://localhost:4000/api/orders/${userId}`);
+            await axios.delete(`http://localhost:4000/api/orders/${orderId}`);
             window.location.reload();
         } catch (error) {
-            console.error('Error deleting user:', error);
+            console.error('Error deleting order:', error);
         }
     };
 
