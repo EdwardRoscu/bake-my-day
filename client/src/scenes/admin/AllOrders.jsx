@@ -2,6 +2,9 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow,} from '@mui/material';
 import {useFetch} from '../../hooks/useFetch';
+import axios from "axios";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const AllOrders = () => {
     const orders = useFetch('http://localhost:4000/api/orders', (json) => json.data);
@@ -12,6 +15,15 @@ const AllOrders = () => {
         return item && item.attributes && item.attributes.name ? item.attributes.name : 'N/A';
     }
 
+    const handleDelete = async (userId) => {
+        try {
+            await axios.delete(`http://localhost:4000/api/orders/${userId}`);
+            window.location.reload();
+        } catch (error) {
+            console.error('Error deleting user:', error);
+        }
+    };
+
     return (
         <TableContainer component={Paper}>
             <Table>
@@ -20,8 +32,9 @@ const AllOrders = () => {
                         <TableCell sx={{fontSize: '16px', width: '15%'}}>Order ID</TableCell>
                         <TableCell sx={{fontSize: '16px', width: '20%'}}>Name</TableCell>
                         <TableCell sx={{fontSize: '16px', width: '25%'}}>Email</TableCell>
-                        <TableCell sx={{fontSize: '16px', width: '20%'}}>Phone</TableCell>
-                        <TableCell sx={{fontSize: '16px', width: '20%'}}>Products</TableCell>
+                        <TableCell sx={{fontSize: '16px', width: '15%'}}>Phone</TableCell>
+                        <TableCell sx={{fontSize: '16px', width: '15%'}}>Products</TableCell>
+                        <TableCell sx={{fontSize: '16px', width: '10%', textAlign: 'center'}}>Delete</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -45,6 +58,14 @@ const AllOrders = () => {
                                         {product.count} {getProductName(product.id)}
                                     </div>
                                 ))}
+                            </TableCell>
+                            <TableCell align="center">
+                                <IconButton
+                                    color="primary"
+                                    onClick={() => handleDelete(order.id)}
+                                >
+                                    <DeleteIcon/>
+                                </IconButton>
                             </TableCell>
                         </TableRow>
                     ))}
