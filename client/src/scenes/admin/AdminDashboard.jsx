@@ -4,6 +4,7 @@ import AdminSidebar from './AdminSidebar';
 import AllOrders from './AllOrders';
 import AllUsers from './AllUsers';
 import {useLogout} from '../../hooks/useLogout';
+import ItemCreationForm from "./ItemCreationForm";
 
 const AdminDashboard = () => {
     const [view, setView] = useState(localStorage.getItem('adminView') || 'orders');
@@ -29,6 +30,7 @@ const AdminDashboard = () => {
                 <Box width="80%" m="70px auto">
                     {view === 'orders' && <AllOrders/>}
                     {view === 'users' && <AllUsers/>}
+                    {view === 'form' && <ItemCreationForm/>}
                 </Box>
             </Box>
         </Box>

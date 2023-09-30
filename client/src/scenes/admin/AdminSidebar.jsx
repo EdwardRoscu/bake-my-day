@@ -16,6 +16,10 @@ const AdminSidebar = ({view, onViewChange}) => {
                                 style={{margin: '20px 0'}}>
                     <ListItemText primary="Users" primaryTypographyProps={{style: {fontSize: '18px'}}}/>
                 </ListItemButton>
+                <ListItemButton selected={view === 'form'} onClick={() => onViewChange('form')}
+                                style={{margin: '20px 0'}}>
+                    <ListItemText primary="New Item" primaryTypographyProps={{style: {fontSize: '18px'}}}/>
+                </ListItemButton>
             </List>
         </Box>
     );
