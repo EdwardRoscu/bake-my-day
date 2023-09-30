@@ -58,7 +58,10 @@ function Navbar() {
             >
                 <Box
                     className="navbar-button"
-                    onClick={() => navigate("/")}
+                    onClick={() => {
+                        navigate("/");
+                        window.location.reload();
+                    }}
                     sx={{
                         "&:hover": {cursor: "pointer"},
                         color: shades.secondary[500],

@@ -11,6 +11,8 @@ const ItemCreationForm = () => {
         image: null
     });
 
+    const [statusMessage, setStatusMessage] = useState('');
+
     const handleChange = (e) => {
         const {name, value} = e.target;
         setFormData({...formData, [name]: value});
@@ -33,80 +35,88 @@ const ItemCreationForm = () => {
                     'Content-Type': 'multipart/form-data'
                 }
             });
+            setStatusMessage('Item created successfully.');
             console.log('Item created:', response.data);
-            // update the UI
         } catch (error) {
+            setStatusMessage('Error creating item.');
             console.error('Error creating item:', error);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="image">Image:</label>
-                <input
-                    type="file"
-                    id="image"
-                    name="image"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                />
-            </div>
-            <div>
-                <label htmlFor="name">Name:</label>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label htmlFor="shortDescription">Short Description:</label>
-                <input
-                    type="text"
-                    id="shortDescription"
-                    name="shortDescription"
-                    value={formData.shortDescription}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label htmlFor="longDescription">Long Description:</label>
-                <textarea
-                    id="longDescription"
-                    name="longDescription"
-                    value={formData.longDescription}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label htmlFor="price">Price:</label>
-                <input
-                    type="number"
-                    id="price"
-                    name="price"
-                    value={formData.price}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label htmlFor="category">Category:</label>
-                <select
-                    id="category"
-                    name="category"
-                    value={formData.category}
-                    onChange={handleChange}
-                >
-                    <option value="cakes">Cakes</option>
-                    <option value="cookies">Cookies</option>
-                    <option value="pies">Pies</option>
-                </select>
-            </div>
+        <div>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="image">Image:</label>
+                    <input
+                        type="file"
+                        id="image"
+                        name="image"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="name">Name:</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="shortDescription">Short Description:</label>
+                    <input
+                        type="text"
+                        id="shortDescription"
+                        name="shortDescription"
+                        value={formData.shortDescription}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="longDescription">Long Description:</label>
+                    <textarea
+                        id="longDescription"
+                        name="longDescription"
+                        value={formData.longDescription}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="price">Price:</label>
+                    <input
+                        type="number"
+                        id="price"
+                        name="price"
+                        value={formData.price}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="category">Category:</label>
+                    <select
+                        id="category"
+                        name="category"
+                        value={formData.category}
+                        onChange={handleChange}
+                    >
+                        <option value="cakes">Cakes</option>
+                        <option value="cookies">Cookies</option>
+                        <option value="pies">Pies</option>
+                    </select>
+                </div>
 
-            <button type="submit">Create Item</button>
-        </form>
+                <button type="submit">Create Item</button>
+            </form>
+            {statusMessage && (
+                <p style={{color: statusMessage.includes('successfully') ? 'green' : 'red'}}>
+                    {statusMessage}
+                </p>
+            )}
+        </div>
     );
 };
 
