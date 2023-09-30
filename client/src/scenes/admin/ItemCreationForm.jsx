@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import './ItemCreationForm.css';
 
 const ItemCreationForm = () => {
     const [formData, setFormData] = useState({
@@ -16,6 +17,9 @@ const ItemCreationForm = () => {
     const handleChange = (e) => {
         const {name, value} = e.target;
         setFormData({...formData, [name]: value});
+        if (name === 'price') {
+            setFormData({...formData, [name]: Math.max(0, value)});
+        }
     };
 
     const handleImageChange = (e) => {
@@ -25,6 +29,15 @@ const ItemCreationForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const requiredFields = ['name', 'shortDescription', 'longDescription', 'price', 'image'];
+        const hasEmptyField = requiredFields.some(field => !formData[field]);
+
+        if (hasEmptyField) {
+            setStatusMessage('Please fill in all required fields.');
+            return;
+        }
+
         const formDataWithImage = new FormData();
         formDataWithImage.append('data', JSON.stringify(formData));
         formDataWithImage.append('files.image', formData.image);
@@ -44,9 +57,9 @@ const ItemCreationForm = () => {
     };
 
     return (
-        <div>
+        <div className="item-creation-form">
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className="form-group">
                     <label htmlFor="image">Image:</label>
                     <input
                         type="file"
