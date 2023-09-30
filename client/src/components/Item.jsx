@@ -6,6 +6,8 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import {shades} from "../theme";
 import {addToCart, increaseCount} from "../state";
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Item = ({item, width}) => {
     const itemsInCart = useSelector((state) => state.cart.cart);
@@ -19,6 +21,31 @@ const Item = ({item, width}) => {
 
     const [isLoading, setIsLoading] = useState(true);
     const {category, price, name, image} = item.attributes;
+    const [isAdmin, setIsAdmin] = useState(false);  // State to track admin status
+
+    useEffect(() => {
+        async function checkAdminStatus() {
+            try {
+                const response = await axios.get('http://localhost:4000/api/users/me');
+                setIsAdmin(response.data.isAdmin);
+            } catch (error) {
+                // Handle error fetching admin status (e.g., user not logged in)
+                setIsAdmin(false);  // Assuming non-admin for simplicity
+            }
+        }
+
+        checkAdminStatus();
+    }, []);
+
+    const handleDelete = async (itemId) => {
+        try {
+            await axios.delete(`http://localhost:4000/api/items/${itemId}`);
+            navigate('/');
+            window.location.reload();
+        } catch (error) {
+            console.error('Error deleting item:', error);
+        }
+    };
 
     useEffect(() => {
         if (image) {
@@ -68,6 +95,23 @@ const Item = ({item, width}) => {
                     onClick={() => navigate(`/item/${item.id}`)}
                     style={{cursor: "pointer"}}
                 />
+                <Box
+                    display={isHovered ? "flex" : "none"}
+                    position="absolute"
+                    top="5%"
+                    width="100%"
+                    justifyContent="flex-end"
+                    paddingRight="5%"
+                >
+                    {isAdmin && (
+                        <IconButton
+                            color="error"
+                            onClick={() => handleDelete(item.id)}
+                        >
+                            <DeleteIcon/>
+                        </IconButton>
+                    )}
+                </Box>
                 <Box
                     display={isHovered ? "block" : "none"}
                     position="absolute"
