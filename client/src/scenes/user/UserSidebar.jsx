@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Box, List, ListItemButton, ListItemText, Typography} from '@mui/material';
 
-const Sidebar = ({view, onViewChange}) => {
+const UserSidebar = ({view, onViewChange}) => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
@@ -20,15 +20,15 @@ const Sidebar = ({view, onViewChange}) => {
             <List>
                 <ListItemButton selected={view === 'orders'} onClick={() => onViewChange('orders')}
                                 style={{margin: '20px 0'}}>
-                    <ListItemText primary="My Orders" primaryTypographyProps={{style: {fontSize: '18px'}}}/>
+                    <ListItemText primary="Orders" primaryTypographyProps={{style: {fontSize: '18px'}}}/>
                 </ListItemButton>
-                {/*<ListItemButton selected={view === 'option2'} onClick={() => onViewChange('option2')}*/}
-                {/*                style={{margin: '20px 0'}}>*/}
-                {/*    <ListItemText primary="Option 2" primaryTypographyProps={{style: {fontSize: '18px'}}}/>*/}
-                {/*</ListItemButton>*/}
+                <ListItemButton selected={view === 'settings'} onClick={() => onViewChange('settings')}
+                                style={{margin: '20px 0'}}>
+                    <ListItemText primary="Settings" primaryTypographyProps={{style: {fontSize: '18px'}}}/>
+                </ListItemButton>
             </List>
         </Box>
     );
 };
 
-export default Sidebar;
+export default UserSidebar;

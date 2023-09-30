@@ -7,8 +7,8 @@ import Confirmation from "./scenes/checkout/Confirmation";
 import Navbar from "./scenes/global/Navbar";
 import CartMenu from "./scenes/global/CartMenu";
 import Footer from "./scenes/global/Footer";
-import Admin from "./scenes/admin/Admin";
-import Profile from "./scenes/user/Profile";
+import AdminDashboard from "./scenes/admin/AdminDashboard";
+import UserProfile from "./scenes/user/UserProfile";
 import Login from "./scenes/auth/Login";
 import Register from "./scenes/auth/Register";
 import Search from "./scenes/search/Search";
@@ -32,8 +32,8 @@ function App() {
                         <Route path="item/:itemId" element={<ItemDetails/>}/>
                         <Route path="checkout" element={<Checkout/>}/>
                         <Route path="checkout/success" element={<Confirmation/>}/>
-                        <Route path="admin" element={<Admin/>}/>
-                        <Route path="profile" element={<Profile/>}/>
+                        <Route path="admin" element={<AdminDashboard/>}/>
+                        <Route path="profile" element={<UserProfile/>}/>
                         <Route path="auth/login" element={<Login/>}/>
                         <Route path="auth/register" element={<Register/>}/>
                         <Route path="search" element={<Search/>}/>

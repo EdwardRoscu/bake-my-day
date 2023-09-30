@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow,} from '@mui/material';
 import {useFetch} from '../../hooks/useFetch';
 
-const MyOrders = () => {
+const UserOrders = () => {
     const userId = localStorage.getItem('userId');
     const allOrders = useFetch('http://localhost:4000/api/orders', (json) => json.data);
     const orders = allOrders.filter(
@@ -58,4 +58,4 @@ const MyOrders = () => {
     );
 };
 
-export default MyOrders;
+export default UserOrders;

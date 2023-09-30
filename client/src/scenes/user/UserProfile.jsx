@@ -1,13 +1,17 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Box, Button} from '@mui/material';
-import Sidebar from './Sidebar';
-import MyOrders from './MyOrders';
-import Option2 from './Option2';
+import UserSidebar from './UserSidebar';
+import UserOrders from './UserOrders';
+import UserSettings from './UserSettings';
 import {useLogout} from '../../hooks/useLogout';
 
-const Profile = () => {
-    const [view, setView] = useState('orders');
+const UserProfile = () => {
+    const [view, setView] = useState(localStorage.getItem('userView') || 'orders');
     const {logout} = useLogout();
+
+    useEffect(() => {
+        localStorage.setItem('userView', view);
+    }, [view]);
 
     function handleViewChange(viewName) {
         setView(viewName);
@@ -15,7 +19,7 @@ const Profile = () => {
 
     return (
         <Box display="flex">
-            <Sidebar view={view} onViewChange={handleViewChange}/>
+            <UserSidebar view={view} onViewChange={handleViewChange}/>
             <Box flexGrow={1} display="flex" flexDirection="column">
                 <Box display="flex" justifyContent="flex-end" mt={3} mr={3}>
                     <Button onClick={logout} variant="contained" color="error">
@@ -23,12 +27,12 @@ const Profile = () => {
                     </Button>
                 </Box>
                 <Box width="80%" m="70px auto">
-                    {view === 'orders' && <MyOrders/>}
-                    {view === 'option2' && <Option2/>}
+                    {view === 'orders' && <UserOrders/>}
+                    {view === 'settings' && <UserSettings/>}
                 </Box>
             </Box>
         </Box>
     );
 };
 
-export default Profile;
+export default UserProfile;

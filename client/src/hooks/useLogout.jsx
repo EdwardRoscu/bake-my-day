@@ -7,6 +7,8 @@ export const useLogout = () => {
         localStorage.removeItem('jwt');
         localStorage.removeItem('user');
         localStorage.removeItem('userId');
+        localStorage.removeItem('adminView');
+        localStorage.removeItem('userView');
         navigate("/auth/login");
     };
 

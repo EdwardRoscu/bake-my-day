@@ -1,7 +1,7 @@
 import React from 'react';
 import {Box, List, ListItemButton, ListItemText, Typography} from '@mui/material';
 
-const Sidebar = ({view, onViewChange}) => {
+const AdminSidebar = ({view, onViewChange}) => {
     return (
         <Box width="10%" minHeight={650} boxShadow="0px 2px 4px rgba(0, 0, 0, 0.1)">
             <Box pt={5} pb={2} pl={2}>
@@ -21,4 +21,4 @@ const Sidebar = ({view, onViewChange}) => {
     );
 };
 
-export default Sidebar;
+export default AdminSidebar;
