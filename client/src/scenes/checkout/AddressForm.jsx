@@ -65,30 +65,6 @@ const AddressForm = ({
                 name={formattedName("country")}
                 error={formattedError("country")}
                 helperText={formattedHelper("country")}
-                sx={{gridColumn: "span 4"}}
-            />
-            <TextField
-                fullWidth
-                type="text"
-                label="Street Address"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.street1}
-                name={formattedName("street1")}
-                error={formattedError("street1")}
-                helperText={formattedHelper("street1")}
-                sx={{gridColumn: "span 2"}}
-            />
-            <TextField
-                fullWidth
-                type="text"
-                label="Street Address 2 (optional)"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.street2}
-                name={formattedName("street2")}
-                error={formattedError("street2")}
-                helperText={formattedHelper("street2")}
                 sx={{gridColumn: "span 2"}}
             />
             <TextField
@@ -106,14 +82,26 @@ const AddressForm = ({
             <TextField
                 fullWidth
                 type="text"
-                label="State"
+                label="Street Address"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.state}
-                name={formattedName("state")}
-                error={formattedError("state")}
-                helperText={formattedHelper("state")}
-                sx={{gridColumn: "1fr"}}
+                value={values.street1}
+                name={formattedName("street1")}
+                error={formattedError("street1")}
+                helperText={formattedHelper("street1")}
+                sx={{gridColumn: "span 4"}}
+            />
+            <TextField
+                fullWidth
+                type="text"
+                label="Street Address 2 (optional)"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.street2}
+                name={formattedName("street2")}
+                error={formattedError("street2")}
+                helperText={formattedHelper("street2")}
+                sx={{gridColumn: "span 4"}}
             />
             <TextField
                 fullWidth
