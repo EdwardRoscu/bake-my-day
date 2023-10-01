@@ -3,14 +3,20 @@ import {useFetch} from "../../hooks/useFetch";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
+import {useEffect, useState} from "react";
 
 const AllUsers = () => {
-    const users = useFetch("http://localhost:4000/api/users");
+    const fetchedUsers = useFetch('http://localhost:4000/api/users');
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        setUsers(fetchedUsers);
+    }, [fetchedUsers]);
 
     const handleDelete = async (userId) => {
         try {
             await axios.delete(`http://localhost:4000/api/users/${userId}`);
-            window.location.reload();
+            setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
         } catch (error) {
             console.error('Error deleting user:', error);
         }

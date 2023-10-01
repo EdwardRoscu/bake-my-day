@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow,} from '@mui/material';
 import {useFetch} from '../../hooks/useFetch';
@@ -7,8 +7,13 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const AllOrders = () => {
-    const orders = useFetch('http://localhost:4000/api/orders', (json) => json.data);
     const items = useSelector((state) => state.cart.items);
+    const fetchedOrders = useFetch('http://localhost:4000/api/orders', (json) => json.data);
+    const [orders, setOrders] = useState([]);
+
+    useEffect(() => {
+        setOrders(fetchedOrders);
+    }, [fetchedOrders]);
 
     function getProductName(productId) {
         const item = items.find((item) => item.id === productId);
@@ -18,7 +23,7 @@ const AllOrders = () => {
     const handleDelete = async (orderId) => {
         try {
             await axios.delete(`http://localhost:4000/api/orders/${orderId}`);
-            window.location.reload();
+            setOrders((prevOrders) => prevOrders.filter((order) => order.id !== orderId));
         } catch (error) {
             console.error('Error deleting order:', error);
         }
