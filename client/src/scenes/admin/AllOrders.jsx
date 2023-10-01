@@ -66,7 +66,7 @@ const AllOrders = () => {
                             </TableCell>
                             <TableCell align="center">
                                 <IconButton
-                                    color="primary"
+                                    color="error"
                                     onClick={() => handleDelete(order.id)}
                                 >
                                     <DeleteIcon/>

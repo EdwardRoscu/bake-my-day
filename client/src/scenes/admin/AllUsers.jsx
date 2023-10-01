@@ -47,7 +47,7 @@ const AllUsers = () => {
                             </TableCell>
                             <TableCell align="center">
                                 <IconButton
-                                    color="primary"
+                                    color="error"
                                     onClick={() => handleDelete(user.id)}
                                 >
                                     <DeleteIcon/>
