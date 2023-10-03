@@ -4,12 +4,9 @@ export const useLogout = () => {
     const navigate = useNavigate();
 
     const logout = () => {
-        localStorage.removeItem('jwt');
-        localStorage.removeItem('user');
-        localStorage.removeItem('userId');
-        localStorage.removeItem('adminView');
-        localStorage.removeItem('userView');
+        localStorage.clear();
         navigate("/auth/login");
+        window.location.reload();
     };
 
     return {logout};

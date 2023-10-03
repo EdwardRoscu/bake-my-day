@@ -13,6 +13,8 @@ import Login from "./scenes/auth/Login";
 import Register from "./scenes/auth/Register";
 import Search from "./scenes/search/Search";
 import setupAxios from './utils/setupAxios';
+import isUserAdmin from './utils/isUserAdmin';
+import isUserLoggedIn from "./utils/isUserLoggedIn";
 import useFetchAndDispatchItems from "./hooks/useFetchAndDispatchItems";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -32,8 +34,8 @@ function App() {
                         <Route path="item/:itemId" element={<ItemDetails/>}/>
                         <Route path="checkout" element={<Checkout/>}/>
                         <Route path="checkout/success" element={<Confirmation/>}/>
-                        <Route path="admin" element={<AdminDashboard/>}/>
-                        <Route path="profile" element={<UserProfile/>}/>
+                        {isUserAdmin() && <Route path="admin" element={<AdminDashboard/>}/>}
+                        {isUserLoggedIn() && <Route path="profile" element={<UserProfile/>}/>}
                         <Route path="auth/login" element={<Login/>}/>
                         <Route path="auth/register" element={<Register/>}/>
                         <Route path="search" element={<Search/>}/>

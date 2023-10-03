@@ -12,6 +12,7 @@ import {addToCart, increaseCount} from "../../state";
 import {useDispatch, useSelector} from "react-redux";
 import {useFetch} from "../../hooks/useFetch";
 import axios from "axios";
+import isUserAdmin from "../../utils/isUserAdmin";
 
 const ItemDetails = () => {
     const navigate = useNavigate();
@@ -22,22 +23,6 @@ const ItemDetails = () => {
     const [count, setCount] = useState(1);
     const [item, setItem] = useState(null);
     const items = useFetch("http://localhost:4000/api/items?populate=image", json => json.data);
-
-    const [isAdmin, setIsAdmin] = useState(false);  // State to track admin status
-
-    useEffect(() => {
-        async function checkAdminStatus() {
-            try {
-                const response = await axios.get('http://localhost:4000/api/users/me');
-                setIsAdmin(response.data.isAdmin);
-            } catch (error) {
-                // Handle error fetching admin status (e.g., user not logged in)
-                setIsAdmin(false);  // Assuming non-admin for simplicity
-            }
-        }
-
-        checkAdminStatus();
-    }, []);
 
     const handleDelete = async (itemId) => {
         try {
@@ -93,7 +78,7 @@ const ItemDetails = () => {
                 <Box flex="1 1 50%" mb="30px">
                     {/* DELETE BUTTON - Visible to Admins only */}
                     <Box sx={{textAlign: 'right', paddingTop: '10px'}}>
-                        {isAdmin && (
+                        {isUserAdmin() && (
                             <Button
                                 variant="contained"
                                 color="error"

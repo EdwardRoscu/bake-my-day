@@ -34,10 +34,12 @@ const Login = () => {
 
                 const jwt = response.data.jwt;
                 const user = response.data.user;
+
                 if (jwt && user) {
                     localStorage.setItem('jwt', jwt);
                     localStorage.setItem('user', JSON.stringify(user));
                     localStorage.setItem('userId', user.id);
+                    localStorage.setItem('isAdmin', user.isAdmin);
                 }
 
                 if (response.data.user["isAdmin"]) {
@@ -45,6 +47,8 @@ const Login = () => {
                 } else {
                     navigate("/");
                 }
+                window.location.reload();
+
             } catch (error) {
                 setErrorMessage(error.response.data.error.message || 'An error occurred.');
             }
